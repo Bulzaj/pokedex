@@ -1,4 +1,5 @@
 import { Card } from "react-bootstrap";
+import { capitalizeFirstLetter } from "../../utils";
 import "./pokemon-card.css";
 
 const PokemonCard = function (props) {
@@ -49,11 +50,6 @@ const PokemonCard = function (props) {
       </Card>
     </>
   );
-};
-
-const capitalizeFirstLetter = function (string) {
-  if (!string) return;
-  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 const generateFooterColor = function (types) {
