@@ -21,13 +21,18 @@ const scrollTop = function () {
 
 function App() {
   const [results, setResults] = useState([]);
+  const [pokemonNames, setPokemonNames] = useState([]);
 
   const onPageChange = function (selectedPage) {
-    fetchData(selectedPage);
+    fetchPokemons(selectedPage);
     scrollTop();
   };
 
-  const fetchData = async function (page) {
+  const onSearchClick = (pokemonName) => {
+    console.log(pokemonName);
+  };
+
+  const fetchPokemons = async function (page) {
     try {
       const res = await axiosInstance.get(
         `/pokemon?limit=${PER_PAGE_LIMIT}&offset=${PER_PAGE_LIMIT * (page - 1)}`
@@ -40,13 +45,24 @@ function App() {
     }
   };
 
+  const fetchPokemonNames = async function () {
+    try {
+      const res = await axiosInstance.get(`/pokemon?limit=${TOTAL_RECORDS}`);
+      const names = res.data.results.map((element) => element.name);
+      setPokemonNames(names);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetchData(1);
+    fetchPokemons(1);
+    fetchPokemonNames();
   }, []);
 
   return (
     <div className="App">
-      <TopNavbar />
+      <TopNavbar pokemonNames={pokemonNames} onSearchClick={onSearchClick} />
       <Container className="mt-3" fluid>
         <PokemonList results={results} />
         <PaginationBar
