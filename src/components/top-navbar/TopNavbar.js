@@ -46,7 +46,7 @@ const TopNavbar = function (props) {
             id="responsive-navbar"
             className="flex-row flex-row-reverse"
           >
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={handleOnClick}>
               <FormControl
                 type="search"
                 placeholder="Search"
