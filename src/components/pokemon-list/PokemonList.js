@@ -6,9 +6,13 @@ import PokemonCard from "../pokemon-card/PokemonCard";
 
 const PokemonList = function (props) {
   const [pokemons, setPokemons] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!props.results) return;
+
+    setIsLoading(true);
+
     const endpoints = props.results.map((result) => `/pokemon/${result.name}`);
 
     async function fetchData() {
@@ -20,6 +24,7 @@ const PokemonList = function (props) {
         );
         const data = responses.map((response) => response.data);
         setPokemons(data);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -32,7 +37,7 @@ const PokemonList = function (props) {
       <Row className="d-flex justify-content-center g-3">
         {pokemons.map((pokemon) => (
           <Col md lg="auto" key={pokemon.name}>
-            <PokemonCard pokemon={pokemon} />
+            <PokemonCard pokemon={pokemon} isLoading={isLoading} />
           </Col>
         ))}
       </Row>

@@ -20,3 +20,15 @@
   --color-unknown: #0d5212;
   --color-shadow: #242624;
 }
+
+.card {
+  height: 470px;
+  min-width: 290px;
+  transform: translateY(5px);
+  transition: transform 0.8s;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
