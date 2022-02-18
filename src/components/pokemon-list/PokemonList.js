@@ -32,7 +32,7 @@ const PokemonList = function (props) {
     fetchData();
   }, [props.results]);
 
-  if (!props.results) {
+  if (props.results.length == 0) {
     return (
       <div className="d-flex justify-content-center align-items-center h-100">
         <Spinner animation="border" role="status" />
