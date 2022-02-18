@@ -1,4 +1,4 @@
-import { Card, Container, Placeholder, Spinner } from "react-bootstrap";
+import { Card, Placeholder, Spinner } from "react-bootstrap";
 import { capitalizeFirstLetter } from "../../utils";
 import "./pokemon-card.css";
 
@@ -6,6 +6,10 @@ const PokemonCard = function (props) {
   const { pokemon } = props;
   const image = pokemon.sprites.other.dream_world.front_default;
   const types = pokemon.types;
+
+  const handleClick = function (e) {
+    e.preventDefault();
+  };
 
   if (props.isLoading) {
     return (
@@ -38,7 +42,7 @@ const PokemonCard = function (props) {
   }
 
   return (
-    <Card className="card shadow">
+    <Card className="card shadow" onClick={handleClick}>
       <Card.Img
         variant="top"
         src={image}
