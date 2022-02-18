@@ -33,7 +33,6 @@ const PokemonList = function (props) {
   }, [props.results]);
 
   if (!props.results) {
-    console.log("No results");
     return (
       <div className="d-flex justify-content-center align-items-center h-100">
         <Spinner animation="border" role="status" />
