@@ -1,5 +1,5 @@
 import { Card, Placeholder, Spinner } from "react-bootstrap";
-import { capitalizeFirstLetter } from "../../utils";
+import { capitalizeFirstLetter, generateFooterColor } from "../../utils";
 import "./pokemon-card.css";
 
 const PokemonCard = function (props) {
@@ -76,18 +76,6 @@ const PokemonCard = function (props) {
       ></Card.Footer>
     </Card>
   );
-};
-
-const generateFooterColor = function (types) {
-  if (!types) throw Error("No pokemon types provided");
-
-  const colors = types.map((type) => `--color-${type.type.name}`);
-
-  if (colors.length === 1) return `var(${colors[0]})`;
-
-  return `linear-gradient(to right, ${colors.map(
-    (color) => ` var(${color})`
-  )})`;
 };
 
 export default PokemonCard;
