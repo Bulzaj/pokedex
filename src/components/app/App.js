@@ -7,13 +7,9 @@ import usePokemonNames from "../../hooks/usePokemonNames";
 function App() {
   const pokemonNames = usePokemonNames();
 
-  const onSearchClick = (pokemonName) => {
-    console.log(pokemonName);
-  };
-
   return (
     <div className="App">
-      <TopNavbar pokemonNames={pokemonNames} onSearchClick={onSearchClick} />
+      <TopNavbar pokemonNames={pokemonNames} />
       <Container className="mt-3" fluid>
         <Routes>
           <Route path="/" element={<Main />} />

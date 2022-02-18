@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Navbar, Container, Form, FormControl, Button } from "react-bootstrap";
 import { capitalizeFirstLetter } from "../../utils";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const TopNavbar = function (props) {
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   let datalist;
   if (searchValue.length >= 3) {
@@ -24,7 +26,7 @@ const TopNavbar = function (props) {
 
   const handleOnClick = (event) => {
     event.preventDefault();
-    props.onSearchClick && props.onSearchClick(searchValue);
+    navigate(`/pokemon/${searchValue}`);
   };
 
   return (

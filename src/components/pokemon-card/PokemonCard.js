@@ -1,5 +1,6 @@
 import { Card, Placeholder, Spinner } from "react-bootstrap";
 import { capitalizeFirstLetter, generateFooterColor } from "../../utils";
+import { useNavigate } from "react-router-dom";
 import "./pokemon-card.css";
 
 const PokemonCard = function (props) {
@@ -7,8 +8,11 @@ const PokemonCard = function (props) {
   const image = pokemon.sprites.other.dream_world.front_default;
   const types = pokemon.types;
 
+  const navigate = useNavigate();
+
   const handleClick = function (e) {
     e.preventDefault();
+    navigate(`/pokemon/${pokemon.name}`);
   };
 
   if (props.isLoading) {
