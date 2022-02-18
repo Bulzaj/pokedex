@@ -65,10 +65,12 @@ function App() {
       <TopNavbar pokemonNames={pokemonNames} onSearchClick={onSearchClick} />
       <Container className="mt-3" fluid>
         <PokemonList results={results} />
-        <PaginationBar
-          onPageChange={onPageChange}
-          lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
-        />
+        {results ? (
+          <PaginationBar
+            onPageChange={onPageChange}
+            lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
+          />
+        ) : null}
       </Container>
     </div>
   );

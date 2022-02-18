@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import axiosInstance from "../../axios-config";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 import PokemonCard from "../pokemon-card/PokemonCard";
 
 const PokemonList = function (props) {
@@ -31,6 +31,15 @@ const PokemonList = function (props) {
     }
     fetchData();
   }, [props.results]);
+
+  if (!props.results) {
+    console.log("No results");
+    return (
+      <div className="d-flex justify-content-center align-items-center h-100">
+        <Spinner animation="border" role="status" />
+      </div>
+    );
+  }
 
   if (pokemons) {
     return (
