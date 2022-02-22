@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../axios-config";
 import { PER_PAGE_LIMIT } from "../consts";
+import FetchError from "../errors/fetch-error";
 
-class FetchError extends Error {
-  constructor(message = "No data fetched") {
-    super(message);
-    this.name = "FetchError";
-  }
-}
-
-const usePokemon = function () {
+const useFetchPokemonList = function () {
   const [results, setResults] = useState([]);
 
-  useEffect(() => fetch(), []);
+  useEffect(() => fetch(1), []);
 
   const fetch = async function (page) {
     try {
@@ -30,4 +24,4 @@ const usePokemon = function () {
   return { results, fetch };
 };
 
-export default usePokemon;
+export default useFetchPokemonList;

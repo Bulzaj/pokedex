@@ -1,38 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import axiosInstance from "../../axios-config";
+import { useMemo } from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import PokemonCard from "../pokemon-card/PokemonCard";
+import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
 
 const PokemonList = function (props) {
-  const [pokemons, setPokemons] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const pokemonNames = useMemo(
+    () => props.results.map((result) => result.name),
+    [props.results]
+  );
+  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(pokemonNames);
 
-  useEffect(() => {
-    if (!props.results) return;
-
-    setIsLoading(true);
-
-    const endpoints = props.results.map((result) => `/pokemon/${result.name}`);
-
-    async function fetchData() {
-      if (!endpoints) return;
-
-      try {
-        const responses = await axios.all(
-          endpoints.map((endpoint) => axiosInstance.get(endpoint))
-        );
-        const data = responses.map((response) => response.data);
-        setPokemons(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, [props.results]);
-
-  if (props.results.length == 0) {
+  if (props.results.length === 0) {
     return (
       <div className="d-flex justify-content-center align-items-center h-100">
         <Spinner animation="border" role="status" />
@@ -40,10 +18,10 @@ const PokemonList = function (props) {
     );
   }
 
-  if (pokemons) {
+  if (pokemonsDetails) {
     return (
       <Row className="d-flex justify-content-center g-3">
-        {pokemons.map((pokemon) => (
+        {pokemonsDetails.map((pokemon) => (
           <Col md lg="auto" key={pokemon.name}>
             <PokemonCard pokemon={pokemon} isLoading={isLoading} />
           </Col>

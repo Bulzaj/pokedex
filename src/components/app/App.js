@@ -3,10 +3,10 @@ import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/Pokemon";
-import usePokemonNames from "../../hooks/usePokemonNames";
+import useFetchPokemonNames from "../../hooks/useFetchPokemonNames";
 
 function App() {
-  const pokemonNames = usePokemonNames();
+  const pokemonNames = useFetchPokemonNames();
 
   return (
     <div className="App">
