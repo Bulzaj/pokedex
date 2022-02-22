@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
-import Pokemon from "../../pages/Pokemon";
+import Pokemon from "../../pages/pokemon/Pokemon";
 import useFetchPokemonNames from "../../hooks/useFetchPokemonNames";
 
 function App() {
