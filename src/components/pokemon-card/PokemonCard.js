@@ -1,5 +1,5 @@
 import { Card, Placeholder, Spinner } from "react-bootstrap";
-import { capitalizeFirstLetter, generateFooterColor } from "../../utils";
+import { capitalizeFirstLetter, generateGradient } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import "./pokemonCard.css";
 
@@ -75,7 +75,7 @@ const PokemonCard = function (props) {
       </Card.Body>
       <Card.Footer
         style={{
-          background: generateFooterColor(types),
+          background: generateGradient(types),
         }}
       ></Card.Footer>
     </Card>

@@ -7,7 +7,7 @@ export const scrollTop = function () {
   window.scrollTo(0, 0);
 };
 
-export const generateFooterColor = function (types) {
+export const generateGradient = function (types) {
   if (!types) throw Error("No pokemon types provided");
 
   const colors = types.map((type) => `--color-${type.type.name}`);
