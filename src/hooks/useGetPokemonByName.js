@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { PokemonsDetailsContext } from "../context/pokemonsDetailsContext";
-import axiosInstance from "../axios-config";
-import FetchError from "../errors/fetch-error";
+import axiosInstance from "../axiosConfig";
+import FetchError from "../errors/fetchError";
 
 const useGetPokemonByName = function (pokemonName) {
   const [context] = useContext(PokemonsDetailsContext);
@@ -10,23 +10,21 @@ const useGetPokemonByName = function (pokemonName) {
   const fetchPokemon = async function (name) {
     try {
       const res = await axiosInstance.get(`/pokemon/${name}`);
-
-      return res.data.results;
+      setPokemonDetails(res.data);
     } catch (error) {
       throw new FetchError();
     }
   };
 
   useEffect(() => {
-    if (!context || !pokemonName) return;
+    if (!pokemonName) return;
 
-    let result = context.find((detail) => detail.name === pokemonName);
+    const result = context?.find((detail) => detail.name === pokemonName);
+    setPokemonDetails(result);
 
     if (!result) {
-      result = fetchPokemon(pokemonName);
+      fetchPokemon(pokemonName);
     }
-
-    setPokemonDetails(result);
   }, [pokemonName]);
 
   return pokemonDetails;

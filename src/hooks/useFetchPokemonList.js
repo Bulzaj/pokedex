@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "../axios-config";
+import axiosInstance from "../axiosConfig";
 import { PER_PAGE_LIMIT } from "../consts";
-import FetchError from "../errors/fetch-error";
+import FetchError from "../errors/fetchError";
 
 const useFetchPokemonList = function () {
   const [results, setResults] = useState([]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "../axios-config";
+import axiosInstance from "../axiosConfig";
 import { TOTAL_RECORDS } from "../consts";
-import FetchError from "../errors/fetch-error";
+import FetchError from "../errors/fetchError";
 
 const usePokemonNames = function () {
   const [pokemonNames, setPokemonNames] = useState([]);

@@ -1,7 +1,7 @@
 import { Card, Placeholder, Spinner } from "react-bootstrap";
 import { capitalizeFirstLetter, generateFooterColor } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import "./pokemon-card.css";
+import "./pokemonCard.css";
 
 const PokemonCard = function (props) {
   const { pokemon } = props;
