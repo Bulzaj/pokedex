@@ -32,7 +32,7 @@ const TopNavbar = function (props) {
   return (
     <>
       <Navbar sticky="top" expand="md" bg="dark" variant="dark">
-        <Container fluid>
+        <Container>
           <Navbar.Brand>
             <img
               alt=""

@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <PokemonsDetailsContextProvider>
         <TopNavbar pokemonNames={pokemonNames} />
-        <Container className="mt-3" fluid>
+        <Container>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/pokemon/:name" element={<Pokemon />} />
