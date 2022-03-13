@@ -26,7 +26,7 @@ const TopNavbar = function (props) {
 
   const handleOnClick = (event) => {
     event.preventDefault();
-    navigate(`/pokemon/${searchValue}`);
+    navigate(`/pokemon/${searchValue.toLowerCase()}`);
   };
 
   return (
