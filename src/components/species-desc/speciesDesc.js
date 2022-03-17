@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { Container, Form, Placeholder, Card } from "react-bootstrap";
-import useFetchPokemonSpeciesDetails from "../../hooks/useFetchPokemonSpeciesDetails";
 
 const SpeciesDesc = function (props) {
-  const species = useFetchPokemonSpeciesDetails(props.speciesName);
-  const flavorTextEntries = species?.flavor_text_entries;
-
-  const versions = extractVersions(flavorTextEntries);
+  const versions = extractVersions(props.flavorTextEntries);
   const [version, setVersion] = useState();
 
-  if (!species)
+  if (!props.flavorTextEntries)
     return (
       <>
         <Placeholder as={Card.Text} animation="glow">
@@ -27,8 +23,11 @@ const SpeciesDesc = function (props) {
   };
 
   return (
-    <Container fluid className="bg-primary text-white rounded p-2">
-      <p>{generateSpeciesDesc(flavorTextEntries, version || versions[0])}</p>
+    <Container fluid className="bg-light rounded p-2">
+      <h3 className="display-3">Description</h3>
+      <p>
+        {generateSpeciesDesc(props.flavorTextEntries, version || versions[0])}
+      </p>
       <VersionSelect versions={versions} onVersionSelect={onVersionSelect} />
     </Container>
   );

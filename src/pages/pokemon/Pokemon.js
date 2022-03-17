@@ -2,18 +2,32 @@ import { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetPokemonByName from "../../hooks/useGetPokemonByName";
+import useFetchPokemonSpeciesDetails from "../../hooks/useFetchPokemonSpeciesDetails";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
+import GeneralInfo from "../../components/general-info/generalInfo";
 
 const Pokemon = function () {
   const params = useParams();
   const navigate = useNavigate();
 
+  // Basic details
   const pokemonDetails = useGetPokemonByName(params.name);
   const id = pokemonDetails?.id;
   const speciesName = pokemonDetails?.species.name;
+  const weight = pokemonDetails?.weight;
+  const height = pokemonDetails?.height;
+  const baseExp = pokemonDetails?.base_experience;
+  const types = pokemonDetails?.types.map((type) => type.name);
 
-  console.log(pokemonDetails);
+  // Species details
+  const species = useFetchPokemonSpeciesDetails(speciesName);
+  const flavorTextEntries = species?.flavor_text_entries;
+  const genderRate = species?.gender_rate;
+  const baseHappiness = species?.base_happiness;
+  const isBaby = species?.is_baby;
+  const isLegendary = species?.is_legendary;
+  const isMythical = species?.is_mythical;
 
   // Images
   const images = pokemonDetails?.sprites;
@@ -23,11 +37,25 @@ const Pokemon = function () {
 
   if (!pokemonDetails) return <></>;
 
+  console.log(pokemonDetails);
+
+  const basicInfo = {
+    weight,
+    height,
+    types,
+    genderRate,
+    baseExp,
+    baseHappiness,
+    isBaby,
+    isLegendary,
+    isMythical,
+  };
+
   return (
     <Container className="mt-3">
       <Row className="justify-content-center mb-2">
         <Col>
-          <h1 className="display-3 text-center">
+          <h1 className="display-1 text-center">
             {capitalizeFirstLetter(pokemonDetails?.name) + " "}
             <strong className="text-muted">#{`${id}`.padStart(3, 0)}</strong>
           </h1>
@@ -41,7 +69,8 @@ const Pokemon = function () {
           />
         </Col>
         <Col>
-          <SpeciesDesc speciesName={speciesName} />
+          <SpeciesDesc flavorTextEntries={flavorTextEntries} />
+          <GeneralInfo info={basicInfo} />
         </Col>
       </Row>
     </Container>
