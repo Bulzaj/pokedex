@@ -1,7 +1,22 @@
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container, Row, Col, ListGroup, Form } from "react-bootstrap";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
+// TODO: Add explenations to certain stats
 const GeneralInfo = function (props) {
+  const [height, setHeight] = useState();
+  const [weight, setWeight] = useState();
+
+  const handleOnUnitsSwitch = function (isImperial) {
+    setHeight(props.info.height * 10 + " cm");
+    setWeight(props.info.weight * 0.1 + " kg");
+    if (isImperial) {
+      const heightInch = (props.info.height * 3.937).toFixed(2) + "";
+      setHeight(heightInch.replace(".", "' ") + '"');
+      setWeight((props.info.weight / 4.536).toFixed(2) + " lb");
+    }
+  };
+
   return (
     <Container fluid className="bg-info rounded p-2">
       <h3 className="display-3 text-light">Basic info</h3>
@@ -15,7 +30,7 @@ const GeneralInfo = function (props) {
               <span>
                 <strong>Height</strong>
               </span>
-              <span>{props.info.height * 10} cm</span>
+              <span>{height}</span>
             </ListGroup.Item>
             <ListGroup.Item
               variant="info"
@@ -24,7 +39,7 @@ const GeneralInfo = function (props) {
               <span>
                 <strong>Weight</strong>
               </span>
-              <span>{props.info.weight * 0.1} kg</span>
+              <span>{weight}</span>
             </ListGroup.Item>
             <ListGroup.Item
               variant="info"
@@ -89,12 +104,35 @@ const GeneralInfo = function (props) {
           </ListGroup>
         </Col>
       </Row>
+      <MeasurementUnitsSwitch onUnitsSwitch={handleOnUnitsSwitch} />
     </Container>
   );
 };
 
+const MeasurementUnitsSwitch = function (props) {
+  const [isImperial, setIsImperial] = useState(false);
+
+  useEffect(() => {
+    props.onUnitsSwitch && props.onUnitsSwitch(isImperial);
+  }, [isImperial]);
+
+  return (
+    <Form>
+      <Form.Group>
+        <Form.Check
+          className="text-light"
+          onChange={() => setIsImperial((prevState) => !prevState)}
+          checked={isImperial}
+          type="switch"
+          id="toMetricSwitch"
+          label="Switch to imperial system"
+        />
+      </Form.Group>
+    </Form>
+  );
+};
+
 const Gender = function (props) {
-  // console.log(props.genderRate);
   if (props.genderRate < 0) return "UNKNOWN";
   if (props.genderRate === 0) return <BsGenderMale />;
   if (props.genderRate === 8) return <BsGenderFemale />;

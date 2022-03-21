@@ -6,6 +6,7 @@ import Pokemon from "../../pages/pokemon/Pokemon";
 import useFetchPokemonNames from "../../hooks/useFetchPokemonNames";
 import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsContext";
 
+// TODO: Add pokemons to favourite
 function App() {
   const pokemonNames = useFetchPokemonNames();
 

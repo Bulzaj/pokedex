@@ -3,6 +3,7 @@ import { capitalizeFirstLetter, generateGradient } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import "./pokemonCard.css";
 
+// TODO: change content of body
 const PokemonCard = function (props) {
   const { pokemon } = props;
   const image = pokemon.sprites.other.dream_world.front_default;
