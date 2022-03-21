@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, ListGroup, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Form,
+  Badge,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
-// TODO: Add explenations to certain stats
 const GeneralInfo = function (props) {
   const [height, setHeight] = useState();
   const [weight, setWeight] = useState();
@@ -48,9 +56,22 @@ const GeneralInfo = function (props) {
               <span>
                 <strong>Gender</strong>
               </span>
-              <span>
-                <Gender genderRate={props.info.genderRate} />
-              </span>
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 450 }}
+                overlay={
+                  <Tooltip id="genderRateTooltip">
+                    The chance of this Pokémon being female, in eighths; or -1
+                    for genderless. For current Pokémon gender rate is:{" "}
+                    {props.info.genderRate}
+                  </Tooltip>
+                }
+              >
+                <span>
+                  <Gender genderRate={props.info.genderRate} />
+                  <Badge bg="info"> ? </Badge>
+                </span>
+              </OverlayTrigger>
             </ListGroup.Item>
           </ListGroup>
           <ListGroup.Item
@@ -72,8 +93,21 @@ const GeneralInfo = function (props) {
               <span>
                 <strong>Base exp</strong>
               </span>
-              <span>{props.info.baseExp}</span>
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 450 }}
+                overlay={
+                  <Tooltip id="baseExpTooltip">
+                    The base experience gained for defeating this Pokémon.
+                  </Tooltip>
+                }
+              >
+                <span>
+                  {props.info.baseExp} <Badge bg="info"> ? </Badge>
+                </span>
+              </OverlayTrigger>
             </ListGroup.Item>
+
             <ListGroup.Item
               variant="info"
               className="d-flex justify-content-between align-items-center"
@@ -81,7 +115,20 @@ const GeneralInfo = function (props) {
               <span>
                 <strong>Base happiness</strong>
               </span>
-              <span>{props.info.baseHappiness}</span>
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 450 }}
+                overlay={
+                  <Tooltip id="baseHappinessTooltip">
+                    The happiness when caught by a normal Pokéball; up to 255.
+                    The higher the number, the happier the Pokémon.
+                  </Tooltip>
+                }
+              >
+                <span>
+                  {props.info.baseHappiness} <Badge bg="info"> ? </Badge>
+                </span>
+              </OverlayTrigger>
             </ListGroup.Item>
             <ListGroup.Item
               variant="info"
