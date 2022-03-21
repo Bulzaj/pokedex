@@ -4,6 +4,8 @@ import { capitalizeFirstLetter } from "../../utils";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
+// TODO: add random pokemon button
+// TODO: on logo click returns to main page
 const TopNavbar = function (props) {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();

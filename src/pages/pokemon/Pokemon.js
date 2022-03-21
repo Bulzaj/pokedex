@@ -1,12 +1,20 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetPokemonByName from "../../hooks/useGetPokemonByName";
 import useFetchPokemonSpeciesDetails from "../../hooks/useFetchPokemonSpeciesDetails";
+import useFetchAbilities from "../../hooks/useFetchAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfo from "../../components/general-info/generalInfo";
+import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
 
+// TODO: add abilities section
+// TODO: mention about selected pokemon type
+// TODO: mention about selected pokemon weaknesses
+// TODO: create stats section
+// TODO: create evolution chain section
+// TODO: add next and previous button
 const Pokemon = function () {
   const params = useParams();
   const navigate = useNavigate();
@@ -19,6 +27,7 @@ const Pokemon = function () {
   const height = pokemonDetails?.height;
   const baseExp = pokemonDetails?.base_experience;
   const types = pokemonDetails?.types.map((type) => type.name);
+  const abilityList = pokemonDetails?.abilities;
 
   // Species details
   const species = useFetchPokemonSpeciesDetails(speciesName);
@@ -29,6 +38,9 @@ const Pokemon = function () {
   const isLegendary = species?.is_legendary;
   const isMythical = species?.is_mythical;
 
+  // Abilities details
+  const abilities = useFetchAbilities(abilityList);
+
   // Images
   const images = pokemonDetails?.sprites;
   const artwork = images?.other["official-artwork"].front_default;
@@ -36,8 +48,6 @@ const Pokemon = function () {
   useEffect(() => !params.name && navigate("/"), []);
 
   if (!pokemonDetails) return <></>;
-
-  console.log(pokemonDetails);
 
   const basicInfo = {
     weight,
@@ -71,6 +81,7 @@ const Pokemon = function () {
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
           <GeneralInfo info={basicInfo} />
+          <AbilitiesInfo abilities={abilities} />
         </Col>
       </Row>
     </Container>
