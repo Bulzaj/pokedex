@@ -39,7 +39,7 @@ const Pokemon = function () {
   const isMythical = species?.is_mythical;
 
   // Abilities details
-  const abilities = useFetchAbilities(abilityList);
+  const abilities = useFetchAbilities(abilityList)[0];
 
   // Images
   const images = pokemonDetails?.sprites;

@@ -13,7 +13,6 @@ const useFetchAbilities = function (abilityList) {
 
   const fetch = async function (abilityList) {
     if (!abilityList) return;
-    console.log(abilityList);
     setIsLoading(true);
     try {
       const response = await axios.all(
@@ -21,7 +20,7 @@ const useFetchAbilities = function (abilityList) {
           axiosInstance.get(`ability/${ability.ability.name}`)
         )
       );
-      setAbilities(response.map((response) => response.data)[0]);
+      setAbilities(response.map((response) => response.data));
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);

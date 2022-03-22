@@ -9,6 +9,7 @@ import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsCon
 // TODO: Add pokemons to favourite
 // TODO: create general fetch hook
 // TODO: refactor add fetch hooks to use general fetch hook
+// TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 function App() {
   const pokemonNames = useFetchPokemonNames();
 
