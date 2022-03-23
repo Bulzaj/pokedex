@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetPokemonByName from "../../hooks/useGetPokemonByName";

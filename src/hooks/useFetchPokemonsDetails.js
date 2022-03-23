@@ -5,7 +5,7 @@ import FetchError from "../errors/fetchError";
 
 const useFetchPokemonDetails = function (pokemonNames) {
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchDetails = async function (endpoints) {
     if (!endpoints) return;
@@ -17,16 +17,16 @@ const useFetchPokemonDetails = function (pokemonNames) {
         endpoints.map((endpoint) => axiosInstance.get(endpoint))
       );
       const data = responses.map((response) => response.data);
-      if (!data) throw new FetchError();
       setPokemonsDetails(data);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      throw new FetchError();
     }
   };
 
   useEffect(() => {
-    const endpoints = pokemonNames.map((name) => `/pokemon/${name}`);
+    if (!pokemonNames || !(pokemonNames instanceof Array)) return;
+    const endpoints = pokemonNames?.map((name) => `/pokemon/${name}`);
     fetchDetails(endpoints);
   }, [pokemonNames]);
 

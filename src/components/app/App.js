@@ -10,6 +10,9 @@ import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsCon
 // TODO: create general fetch hook
 // TODO: refactor add fetch hooks to use general fetch hook
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
+
+// TODO: add global language (and version?) selection feature
+// TODO: create hook for filtering languages and versions (from api response)
 function App() {
   const pokemonNames = useFetchPokemonNames();
 

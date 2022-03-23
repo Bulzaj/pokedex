@@ -4,6 +4,7 @@ import useFetchPokemonList from "../../hooks/useFetchPokemonList";
 import { scrollTop } from "../../utils";
 import { PER_PAGE_LIMIT, TOTAL_RECORDS } from "../../consts";
 
+// TODO: Improve that ugly grid gallery component
 const Main = function () {
   const pokemonList = useFetchPokemonList();
 
