@@ -28,6 +28,7 @@ const Pokemon = function () {
   const baseExp = pokemonDetails?.base_experience;
   const types = pokemonDetails?.types.map((type) => type.name);
   const abilityList = pokemonDetails?.abilities;
+  const name = pokemonDetails?.name;
 
   // Species details
   const species = useFetchPokemonSpeciesDetails(speciesName);
@@ -81,7 +82,7 @@ const Pokemon = function () {
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
           <GeneralInfo info={basicInfo} />
-          <AbilitiesInfo abilities={abilities} />
+          <AbilitiesInfo abilities={abilities} pokemonName={name} />
         </Col>
       </Row>
     </Container>

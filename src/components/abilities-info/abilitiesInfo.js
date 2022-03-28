@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Accordion,
   Container,
   Button,
   Modal,
-  Stack,
-  Figure,
+  Image,
+  ListGroup,
+  Spinner,
 } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
+import { capitalizeFirstLetter } from "../../utils";
 
-// TODO: list other pokemons with that ability
 // TODO: move version select to pokemon detail page and add flavour_text_desc || or not ?
 const AbilitiesInfo = function (props) {
   const [show, setShow] = useState(false);
@@ -55,6 +56,40 @@ const AbilitiesInfo = function (props) {
     });
   }
 
+  let list = (
+    <div className="d-flex justify-content-center">
+      <Spinner animation="border" role="status" />
+    </div>
+  );
+  if (!isLoading && pokemonsDetails) {
+    list = (
+      <ListGroup
+        variant="flush"
+        defaultActiveKey={`/pokemon/${props.pokemonName}`}
+      >
+        {pokemonsDetails?.map((pokemon) => {
+          return (
+            <ListGroup.Item
+              href={`/pokemon/${pokemon.name}`}
+              key={pokemon.name}
+              className="d-flex align-items-center justify-content-around"
+              action
+            >
+              <Image
+                style={{ width: "110px", height: "110px" }}
+                src={
+                  pokemon.sprites.other.dream_world.front_default ||
+                  pokemon.sprites.other.home.front_default
+                }
+              />
+              <p className="lead">{capitalizeFirstLetter(pokemon.name)}</p>
+            </ListGroup.Item>
+          );
+        })}
+      </ListGroup>
+    );
+  }
+
   return (
     <>
       <Container fluid className="bg-light rounded p-2">
@@ -75,39 +110,9 @@ const AbilitiesInfo = function (props) {
               .map((name) => name.name)}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <PokemonList pokemonList={pokemonsDetails} />
-        </Modal.Body>
+        <Modal.Body>{list}</Modal.Body>
       </Modal>
     </>
-  );
-};
-
-const PokemonList = function (props) {
-  if (!props.pokemonList) return <></>;
-
-  return (
-    <Stack gap={3} className="d-flex align-items-center">
-      {props.pokemonList.map((pokemon) => {
-        const image = pokemon.sprites.other.dream_world.front_default;
-        return (
-          <PokemonListItem
-            key={pokemon.name}
-            name={pokemon.name}
-            image={image}
-          />
-        );
-      })}
-    </Stack>
-  );
-};
-
-const PokemonListItem = function (props) {
-  return (
-    <Figure>
-      <Figure.Image src={props.image} width={200} height={200} />
-      <Figure.Caption className="text-right">{props.name}</Figure.Caption>
-    </Figure>
   );
 };
 
