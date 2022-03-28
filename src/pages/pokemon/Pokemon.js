@@ -8,11 +8,10 @@ import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfo from "../../components/general-info/generalInfo";
 import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
+import StatsInfo from "../../components/stats-info/statsInfo";
 
-// TODO: add abilities section
 // TODO: mention about selected pokemon type
 // TODO: mention about selected pokemon weaknesses
-// TODO: create stats section
 // TODO: create evolution chain section
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -29,6 +28,7 @@ const Pokemon = function () {
   const types = pokemonDetails?.types.map((type) => type.name);
   const abilityList = pokemonDetails?.abilities;
   const name = pokemonDetails?.name;
+  const stats = pokemonDetails?.stats;
 
   // Species details
   const species = useFetchPokemonSpeciesDetails(speciesName);
@@ -78,6 +78,7 @@ const Pokemon = function () {
             src={artwork}
             className="rounded img-fluid mx-auto d-block bg-light"
           />
+          <StatsInfo stats={stats} />
         </Col>
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
