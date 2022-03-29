@@ -79,7 +79,8 @@ const AbilitiesInfo = function (props) {
                 style={{ width: "110px", height: "110px" }}
                 src={
                   pokemon.sprites.other.dream_world.front_default ||
-                  pokemon.sprites.other.home.front_default
+                  pokemon.sprites.other.home.front_default ||
+                  pokemon.sprites.other["official-artwork"].front_default
                 }
               />
               <p className="lead">{capitalizeFirstLetter(pokemon.name)}</p>

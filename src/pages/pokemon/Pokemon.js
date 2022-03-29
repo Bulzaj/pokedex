@@ -9,11 +9,13 @@ import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfo from "../../components/general-info/generalInfo";
 import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
 import StatsInfo from "../../components/stats-info/statsInfo";
+import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 
 // TODO: mention about selected pokemon type
 // TODO: mention about selected pokemon weaknesses
 // TODO: create evolution chain section
 // TODO: add next and previous button
+// TODO: create own bootstrap variants with pokemon types colors
 const Pokemon = function () {
   const params = useParams();
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const Pokemon = function () {
   const weight = pokemonDetails?.weight;
   const height = pokemonDetails?.height;
   const baseExp = pokemonDetails?.base_experience;
-  const types = pokemonDetails?.types.map((type) => type.name);
+  const types = pokemonDetails?.types;
   const abilityList = pokemonDetails?.abilities;
   const name = pokemonDetails?.name;
   const stats = pokemonDetails?.stats;
@@ -79,6 +81,7 @@ const Pokemon = function () {
             className="rounded img-fluid mx-auto d-block bg-light"
           />
           <StatsInfo stats={stats} />
+          <PokemonTypes types={types} />
         </Col>
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
