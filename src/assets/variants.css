@@ -74,12 +74,12 @@
   color: #eee;
 }
 
-.fairy {
+.btn-fairy {
   background-color: var(--fairy);
   color: #eee;
 }
 
-.fairy:hover {
+.btn-fairy:hover {
   background-color: var(--fairy-dark);
   color: #eee;
 }

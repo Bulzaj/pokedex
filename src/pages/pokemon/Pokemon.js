@@ -10,11 +10,11 @@ import GeneralInfo from "../../components/general-info/generalInfo";
 import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
+import DamageRelations from "../../components/damage-relations/damageRelations";
+import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
 
-// TODO: mention about selected pokemon weaknesses
 // TODO: create evolution chain section
 // TODO: add next and previous button
-// TODO: create own bootstrap variants with pokemon types colors
 const Pokemon = function () {
   const params = useParams();
   const navigate = useNavigate();
@@ -47,11 +47,20 @@ const Pokemon = function () {
   // Abilities details
   const abilities = useFetchAbilities(abilityList)[0];
 
+  // Types details
+  const { typesDetails, isLoading } = useFetchTypesDetails(types);
+  const damageRelations = typesDetails?.map((details) => {
+    return { type: details.name, relations: details.damage_relations };
+  });
+
   // Images
   const images = pokemonDetails?.sprites;
   const artwork = images?.other["official-artwork"].front_default;
 
-  useEffect(() => !params.name && navigate("/"), []);
+  useEffect(
+    () => !params.name || (params.name.length === 0 && navigate("/")),
+    []
+  );
 
   if (!pokemonDetails) return <></>;
 
@@ -94,6 +103,7 @@ const Pokemon = function () {
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
           <GeneralInfo info={basicInfo} />
           <AbilitiesInfo abilities={abilities} pokemonName={name} />
+          <DamageRelations relations={damageRelations} />
         </Col>
       </Row>
     </Container>

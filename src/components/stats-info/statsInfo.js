@@ -4,6 +4,7 @@ const StatsInfo = function (props) {
   return (
     <Container fluid className="bg-success text-light rounded p-2">
       <h3 className="display-3">Statistics</h3>
+      <p>A list of base stat values for this Pokémon.</p>
       {props?.stats.map((stat) => (
         <Row key={stat.stat.name}>
           <Col sm={4}>

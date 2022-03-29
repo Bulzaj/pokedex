@@ -10,10 +10,10 @@ const PokemonTypes = function (props) {
       <div className="d-flex justify-content-around">
         {props?.types.map((type) => (
           <Button
+            className="w-25"
             key={type.type.name}
             size="lg"
             variant={type.type.name}
-            style={{ width: "92px" }}
           >
             {capitalizeFirstLetter(type.type.name)}
           </Button>
