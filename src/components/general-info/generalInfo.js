@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { capitalizeFirstLetter } from "../../utils";
 
 const GeneralInfo = function (props) {
   const [height, setHeight] = useState();
@@ -83,6 +84,49 @@ const GeneralInfo = function (props) {
             </span>
             <span>{props.info.isBaby ? "Yes" : "No"}</span>
           </ListGroup.Item>
+          <ListGroup.Item
+            variant="info"
+            className="d-flex justify-content-between align-items-center"
+          >
+            <span>
+              <strong>Evolves from</strong>
+            </span>
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 450 }}
+              overlay={
+                <Tooltip id="genderRateTooltip">
+                  The Pokémon species that evolves into this Pokemon species
+                </Tooltip>
+              }
+            >
+              <span>
+                {capitalizeFirstLetter(props.info.evolvesFrom?.name)}{" "}
+                <Badge bg="info"> ? </Badge>
+              </span>
+            </OverlayTrigger>
+          </ListGroup.Item>
+          <ListGroup.Item
+            variant="info"
+            className="d-flex justify-content-between align-items-center"
+          >
+            <span>
+              <strong>Growth rate</strong>
+            </span>
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 450 }}
+              overlay={
+                <Tooltip id="genderRateTooltip">
+                  The rate at which this Pokémon species gains levels.
+                </Tooltip>
+              }
+            >
+              <span>
+                {props.info.growthRate} <Badge bg="info"> ? </Badge>
+              </span>
+            </OverlayTrigger>
+          </ListGroup.Item>
         </Col>
         <Col>
           <ListGroup>
@@ -147,6 +191,51 @@ const GeneralInfo = function (props) {
                 <strong>Is mythical?</strong>
               </span>
               <span>{props.info.isMythical ? "Yes" : "No"}</span>
+            </ListGroup.Item>
+            <ListGroup.Item
+              variant="info"
+              className="d-flex justify-content-between align-items-center"
+            >
+              <span>
+                <strong>Capture rate</strong>
+              </span>
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 450 }}
+                overlay={
+                  <Tooltip id="genderRateTooltip">
+                    The higher the number, the easier the catch
+                  </Tooltip>
+                }
+              >
+                <span>
+                  {props.info.captureRate} <Badge bg="info"> ? </Badge>
+                </span>
+              </OverlayTrigger>
+            </ListGroup.Item>
+            <ListGroup.Item
+              variant="info"
+              className="d-flex justify-content-between align-items-center"
+            >
+              <span>
+                <strong>Genera</strong>
+              </span>
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 450 }}
+                overlay={
+                  <Tooltip id="genderRateTooltip">
+                    The genus of this Pokémon species
+                  </Tooltip>
+                }
+              >
+                <span>
+                  {props.info.genera
+                    ?.filter((item) => item.language.name === "en")
+                    .map((item) => item.genus)}{" "}
+                  <Badge bg="info"> ? </Badge>
+                </span>
+              </OverlayTrigger>
             </ListGroup.Item>
           </ListGroup>
         </Col>

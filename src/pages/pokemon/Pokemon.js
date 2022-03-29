@@ -11,7 +11,6 @@ import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 
-// TODO: mention about selected pokemon type
 // TODO: mention about selected pokemon weaknesses
 // TODO: create evolution chain section
 // TODO: add next and previous button
@@ -40,6 +39,10 @@ const Pokemon = function () {
   const isBaby = species?.is_baby;
   const isLegendary = species?.is_legendary;
   const isMythical = species?.is_mythical;
+  const evolvesFrom = species?.evolves_from_species;
+  const captureRate = species?.capture_rate;
+  const growthRate = species?.growth_rate.name;
+  const genera = species?.genera;
 
   // Abilities details
   const abilities = useFetchAbilities(abilityList)[0];
@@ -62,6 +65,10 @@ const Pokemon = function () {
     isBaby,
     isLegendary,
     isMythical,
+    evolvesFrom,
+    captureRate,
+    growthRate,
+    genera,
   };
 
   return (
