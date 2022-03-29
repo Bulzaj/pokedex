@@ -1,0 +1,235 @@
+#root {
+  --bug: #176906;
+  --bug-dark: #0f4704;
+
+  --dragon: linear-gradient(to right, #bd360d, #1d6ac2);
+  --dragon-dark: linear-gradient(to right, #872507, #164f91);
+
+  --fairy: #e022bd;
+  --fairy-dark: #a6178c;
+
+  --fire: #d14002;
+  --fire-dark: #942e03;
+
+  --ghost: #660991;
+  --ghost-dark: #42065e;
+
+  --ground: linear-gradient(to right, #c0d902, #6d781d);
+  --ground-dark: linear-gradient(to right, #667402, #3b410f);
+
+  --normal: #707070;
+  --normal-dark: #4a4a4a;
+
+  --psychic: #a500b8;
+  --psychic-dark: #750082;
+
+  --steel: #414141;
+  --steel-dark: #2e2e2e;
+
+  --dark: linear-gradient(to right, #242424, #37003d);
+  --dark-dark: linear-gradient(to right, #0c0c0c, #230027);
+
+  --electric: #c3d100;
+  --electric-dark: #8a9400;
+
+  --fighting: #b80000;
+  --fighting-dark: #680000;
+
+  --flying: linear-gradient(to right, #0095c7, #a1a1a1);
+  --flying-dark: linear-gradient(to right, #007197, #818181);
+
+  --grass: #54c200;
+  --grass-dark: #3b8800;
+
+  --ice: #007ef5;
+  --ice-dark: #0061bd;
+
+  --poison: #7600bf;
+  --poison-dark: #4e007e;
+
+  --rock: #854500;
+  --rock-dark: #5c2f00;
+
+  --water: #0039bf;
+  --water-dark: #002d95;
+}
+
+.btn-bug {
+  background-color: var(--bug);
+  color: #eee;
+}
+
+.btn-bug:hover {
+  background-color: var(--bug-dark);
+  color: #eee;
+}
+
+.btn-dragon {
+  background-image: var(--dragon);
+  color: #eee;
+}
+
+.btn-dragon:hover {
+  background-image: var(--dragon-dark);
+  color: #eee;
+}
+
+.fairy {
+  background-color: var(--fairy);
+  color: #eee;
+}
+
+.fairy:hover {
+  background-color: var(--fairy-dark);
+  color: #eee;
+}
+
+.btn-fire {
+  background-color: var(--fire);
+  color: #eee;
+}
+
+.btn-fire:hover {
+  background-color: var(--fire-dark);
+  color: #eee;
+}
+
+.btn-ghost {
+  background-color: var(--ghost);
+  color: #eee;
+}
+
+.btn-ghost:hover {
+  background-color: var(--ghost-dark);
+  color: #eee;
+}
+
+.btn-ground {
+  background-image: var(--ground);
+  color: #eee;
+}
+
+.btn-ground:hover {
+  background-image: var(--ground-dark);
+  color: #eee;
+}
+
+.btn-normal {
+  background-color: var(--normal);
+  color: #111;
+}
+
+.btn-normal:hover {
+  background-color: var(--normal-dark);
+  color: #eee;
+}
+
+.btn-psychic {
+  background-color: var(--psychic);
+  color: #eee;
+}
+
+.btn-psychic:hover {
+  background-color: var(--psychic-dark);
+  color: #eee;
+}
+
+.btn-steel {
+  background-color: var(--steel);
+  color: #eee;
+}
+
+.btn-steel:hover {
+  background-color: var(--steel-dark);
+  color: #eee;
+}
+
+.btn-dark {
+  background-image: var(--dark);
+  color: #eee;
+}
+
+.btn-dark:hover {
+  background-image: var(--dark-dark);
+  color: #eee;
+}
+
+.btn-electric {
+  background-color: var(--electric);
+  color: #111;
+}
+
+.btn-electric:hover {
+  background-color: var(--electric-dark);
+  color: #111;
+}
+
+.btn-fighting {
+  background-color: var(--fighting);
+  color: #eee;
+}
+
+.btn-fighting:hover {
+  background-color: var(--fighting-dark);
+  color: #eee;
+}
+
+.btn-flying {
+  background-image: var(--flying);
+  color: #eee;
+}
+
+.btn-flying:hover {
+  background-image: var(--flying-dark);
+  color: #eee;
+}
+
+.btn-grass {
+  background-color: var(--grass);
+  color: #111;
+}
+
+.btn-grass:hover {
+  background-color: var(--grass-dark);
+  color: #eee;
+}
+
+.btn-ice {
+  background-color: var(--ice);
+  color: #111;
+}
+
+.btn-ice:hover {
+  background-color: var(--ice-dark);
+  color: #eee;
+}
+
+.btn-poison {
+  background-color: var(--poison);
+  color: #eee;
+}
+
+.btn-poison:hover {
+  background-color: var(--poison-dark);
+  color: #eee;
+}
+
+.btn-rock {
+  background-color: var(--rock);
+  color: #eee;
+}
+
+.btn-rock:hover {
+  background-color: var(--rock-dark);
+  color: #eee;
+}
+
+.btn-water {
+  background-color: var(--water);
+  color: #eee;
+}
+
+.btn-water:hover {
+  background-color: var(--water-dark);
+  color: #eee;
+}
