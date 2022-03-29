@@ -1,5 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "./assets/variants.css";
+@import "./assets//style.css";
 
 body {
   margin: 0;

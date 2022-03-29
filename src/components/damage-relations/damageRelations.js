@@ -3,7 +3,7 @@ import { capitalizeFirstLetter } from "../../utils";
 
 const DamageRelations = function (props) {
   return (
-    <Container fluid className="bg-danger text-light rounded p-2">
+    <Container fluid className="bg-light text-dark rounded p-2">
       <h3 className="display-3">Damage relations</h3>
       <p>
         A detail of how effective this type is toward others and vice versa.

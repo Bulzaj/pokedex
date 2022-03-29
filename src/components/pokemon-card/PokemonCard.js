@@ -47,7 +47,7 @@ const PokemonCard = function (props) {
   }
 
   return (
-    <Card className="card shadow" onClick={handleClick}>
+    <Card className="card shadow interactive" onClick={handleClick}>
       <Card.Img
         variant="top"
         src={image}

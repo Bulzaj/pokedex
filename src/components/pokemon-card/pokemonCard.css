@@ -24,11 +24,4 @@
 .card {
   height: 470px;
   min-width: 290px;
-  transform: translateY(5px);
-  transition: transform 0.8s;
-}
-
-.card:hover {
-  cursor: pointer;
-  transform: translateY(-5px);
 }

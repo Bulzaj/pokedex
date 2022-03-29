@@ -11,6 +11,7 @@ import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
+import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
 
 // TODO: create evolution chain section
@@ -43,6 +44,7 @@ const Pokemon = function () {
   const captureRate = species?.capture_rate;
   const growthRate = species?.growth_rate.name;
   const genera = species?.genera;
+  const evolutionChain = species?.evolution_chain;
 
   // Abilities details
   const abilities = useFetchAbilities(abilityList)[0];
@@ -104,6 +106,11 @@ const Pokemon = function () {
           <GeneralInfo info={basicInfo} />
           <AbilitiesInfo abilities={abilities} pokemonName={name} />
           <DamageRelations relations={damageRelations} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <EvolutionChain evolutionChainUrl={evolutionChain?.url} />
         </Col>
       </Row>
     </Container>
