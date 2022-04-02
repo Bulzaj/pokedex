@@ -2,9 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FetchError from "../errors/fetchError";
 
-const useEvolutionChain = function (url) {
+const useFetchEvolutionChain = function (url) {
   const [chain, setChain] = useState([]);
-  const [evolutionDetails, setEvolutionDetails] = useState();
 
   useEffect(() => {
     fetch(url);
@@ -17,28 +16,29 @@ const useEvolutionChain = function (url) {
       const response = await axios.get(url);
       const chain = response.data.chain;
 
-      const chainArr = [chain.species.name];
-      const evolutionDetailsArr = [];
+      const chainArr = [parseEvolutionLink(chain)];
 
       let nextLink = chain.evolves_to[0];
 
       while (nextLink) {
         const tmp = nextLink;
-        chainArr.push(tmp.species.name);
-        evolutionDetailsArr.push({
-          species: tmp.species.name,
-          details: tmp.evolution_details[0],
-        });
+        chainArr.push(parseEvolutionLink(tmp));
         nextLink = tmp.evolves_to[0];
       }
       setChain(chainArr);
-      setEvolutionDetails(evolutionDetailsArr);
     } catch (error) {
       throw new FetchError(error.message);
     }
   };
 
-  return { chain, evolutionDetails };
+  return { chain };
 };
 
-export default useEvolutionChain;
+const parseEvolutionLink = function (evolutionLink) {
+  return {
+    speciesName: evolutionLink.species.name,
+    evolutionDetails: evolutionLink.evolution_details[0],
+  };
+};
+
+export default useFetchEvolutionChain;

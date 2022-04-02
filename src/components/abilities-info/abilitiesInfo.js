@@ -17,7 +17,10 @@ const AbilitiesInfo = function (props) {
   const [show, setShow] = useState(false);
   const [ability, setAbility] = useState();
   const [pokemonNames, setPokemonNames] = useState();
-  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(pokemonNames);
+  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(
+    pokemonNames,
+    (name) => `/pokemon/${name}`
+  );
 
   const modalHandleShow = function (ability) {
     setAbility(ability);
