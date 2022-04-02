@@ -41,7 +41,11 @@ const AbilitiesInfo = function (props) {
               .map((name) => name.name)}
           </Accordion.Header>
           <AccordionBody>
-            <p>{ability.effect_entries[1].effect}</p>
+            <p>
+              {ability.effect_entries[1]
+                ? ability.effect_entries[1].effect
+                : ability.effect_entries[0].effect}
+            </p>
             <div className="d-flex justify-content-center mt-3">
               <Button
                 variant="secondary"

@@ -104,7 +104,7 @@ const Pokemon = function () {
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
           <GeneralInfo info={basicInfo} />
-          <AbilitiesInfo abilities={abilities} pokemonName={name} />
+          <AbilitiesInfo abilities={abilities} />
           <DamageRelations relations={damageRelations} />
         </Col>
       </Row>

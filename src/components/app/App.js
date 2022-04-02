@@ -13,6 +13,12 @@ import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsCon
 
 // TODO: add global language (and version?) selection feature
 // TODO: create hook for filtering languages and versions (from api response)
+
+// TODO: add pokemon comparing feature
+
+// TODO: insert link to megaform if has one
+
+// FIXME: buton size on mobile
 function App() {
   const pokemonNames = useFetchPokemonNames();
 

@@ -7,3 +7,7 @@
   cursor: pointer;
   transform: translateY(-5px);
 }
+
+.hover-info:hover {
+  color: var(--bs-info);
+}
