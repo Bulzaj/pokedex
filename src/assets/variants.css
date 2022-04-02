@@ -116,7 +116,7 @@
 
 .btn-normal {
   background-color: var(--normal);
-  color: #111;
+  color: #eee;
 }
 
 .btn-normal:hover {
