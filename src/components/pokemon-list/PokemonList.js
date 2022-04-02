@@ -10,7 +10,10 @@ const PokemonList = function (props) {
     [props.results]
   );
 
-  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(pokemonNames);
+  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(
+    pokemonNames,
+    (pokemonName) => `/pokemon/${pokemonName}`
+  );
   const [, setContext] = useContext(PokemonsDetailsContext);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import axiosInstance from "../axiosConfig";
 import axios from "axios";
 import FetchError from "../errors/fetchError";
 
-const useFetchPokemonDetails = function (pokemonNames) {
+const useFetchPokemonDetails = function (endpoints, endpointsMap) {
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,10 +25,11 @@ const useFetchPokemonDetails = function (pokemonNames) {
   };
 
   useEffect(() => {
-    if (!pokemonNames || !(pokemonNames instanceof Array)) return;
-    const endpoints = pokemonNames?.map((name) => `/pokemon/${name}`);
-    fetchDetails(endpoints);
-  }, [pokemonNames]);
+    if (!endpoints || !(endpoints instanceof Array)) return;
+    let newEndpoints = endpoints;
+    if (endpointsMap) newEndpoints = endpoints.map(endpointsMap);
+    fetchDetails(newEndpoints);
+  }, [endpoints]);
 
   return { pokemonsDetails, isLoading };
 };
