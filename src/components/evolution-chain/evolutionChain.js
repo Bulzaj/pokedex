@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Container, Row, Col, Image, Collapse, Button } from "react-bootstrap";
 import useFetchEvolutionChain from "../../hooks/useEvolutionChain";
 import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
@@ -17,6 +17,7 @@ const EvolutionChain = function (props) {
   const urlParams = useParams();
   const [selectedChainLink, setSelectedChainLink] = useState();
   const [showEvolutionInfo, setShowEvolutionInfo] = useState(false);
+  const titleRef = useRef();
 
   const handleFigureClick = function (pokemonName) {
     if (pokemonName === urlParams) return;
@@ -27,6 +28,7 @@ const EvolutionChain = function (props) {
     if (chainLink.speciesName === selectedChainLink?.speciesName) return;
     setShowEvolutionInfo(true);
     setSelectedChainLink(chainLink);
+    titleRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCloseInfoBtnClick = function () {
@@ -42,7 +44,9 @@ const EvolutionChain = function (props) {
 
   return (
     <Container className="bg-dark text-light rounded p-2">
-      <h3 className="display-3">{title}</h3>
+      <h3 ref={titleRef} className="display-3">
+        {title}
+      </h3>
       <Container>
         <Collapse in={showEvolutionInfo}>
           <Container
