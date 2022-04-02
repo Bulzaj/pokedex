@@ -45,7 +45,10 @@ const EvolutionChain = function (props) {
       <h3 className="display-3">{title}</h3>
       <Container>
         <Collapse in={showEvolutionInfo}>
-          <Container id="evolution-details">
+          <Container
+            id="evolution-details"
+            className="bg-light text-dark rounded p-2 mb-3"
+          >
             <RegularList>
               {selectedChainLink
                 ? Object.entries(selectedChainLink.evolutionDetails).map(
@@ -59,7 +62,7 @@ const EvolutionChain = function (props) {
                   )
                 : "Closing ..."}
             </RegularList>
-            <Button variant="light" onClick={handleCloseInfoBtnClick}>
+            <Button variant="dark" size="lg" onClick={handleCloseInfoBtnClick}>
               Close
             </Button>
           </Container>
