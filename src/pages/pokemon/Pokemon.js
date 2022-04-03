@@ -14,7 +14,6 @@ import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
 
-// TODO: create evolution chain section
 // TODO: add next and previous button
 const Pokemon = function () {
   const params = useParams();
