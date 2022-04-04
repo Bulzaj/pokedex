@@ -31,7 +31,7 @@ const AbilitiesInfo = function (props) {
     setShow(false);
   };
 
-  let abilities = null;
+  let abilities = <Spinner animation="border" role="status" />;
   if (props.abilities) {
     let i = -1;
     abilities = props.abilities?.map((ability) => {

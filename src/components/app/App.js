@@ -3,8 +3,7 @@ import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
-import useFetchPokemonNames from "../../hooks/useFetchPokemonNames";
-import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsContext";
+import useFetchPokemons from "../../hooks/useFetchPokemons";
 
 // TODO: Add pokemons to favourite
 // TODO: create general fetch hook
@@ -20,19 +19,19 @@ import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsCon
 
 // FIXME: buton size on mobile
 function App() {
-  const pokemonNames = useFetchPokemonNames();
+  const pokemonNames = useFetchPokemons()?.results.map(
+    (pokemon) => pokemon.name
+  );
 
   return (
     <div className="App">
-      <PokemonsDetailsContextProvider>
-        <TopNavbar pokemonNames={pokemonNames} />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/pokemon/:name" element={<Pokemon />} />
-          </Routes>
-        </Container>
-      </PokemonsDetailsContextProvider>
+      <TopNavbar pokemonNames={pokemonNames} />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/pokemon/:name" element={<Pokemon />} />
+        </Routes>
+      </Container>
     </div>
   );
 }

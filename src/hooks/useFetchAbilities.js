@@ -1,33 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import axiosInstance from "../axiosConfig";
-import FetchError from "../errors/fetchError";
+import fetch from "../fetch";
 
-const useFetchAbilities = function (abilityList) {
+const useFetchAbilities = function (abilityNames) {
   const [abilities, setAbilities] = useState();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetch(abilityList);
-  }, [abilityList]);
+    if (abilities || !abilityNames) return;
+    fetch({ endpoint: "ability", ids: abilityNames }, (data) =>
+      setAbilities(data)
+    );
+  }, [abilityNames, abilities]);
 
-  const fetch = async function (abilityList) {
-    if (!abilityList) return;
-    setIsLoading(true);
-    try {
-      const response = await axios.all(
-        abilityList.map((ability) =>
-          axiosInstance.get(`ability/${ability.ability.name}`)
-        )
-      );
-      setAbilities(response.map((response) => response.data));
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      throw new FetchError(error.message);
-    }
-  };
-
-  return [abilities, isLoading];
+  return abilities;
 };
 export default useFetchAbilities;

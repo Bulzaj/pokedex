@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
-import useGetPokemonByName from "../../hooks/useGetPokemonByName";
-import useFetchPokemonSpeciesDetails from "../../hooks/useFetchPokemonSpeciesDetails";
+import { useParams } from "react-router-dom";
+import useFetchPokemonSpecies from "../../hooks/useFetchPokemonSpecies";
 import useFetchAbilities from "../../hooks/useFetchAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
@@ -13,14 +12,15 @@ import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
+import useFetchPokemons from "../../hooks/useFetchPokemons";
 
 // TODO: add next and previous button
 const Pokemon = function () {
   const params = useParams();
-  const navigate = useNavigate();
+  const activePokemonName = useMemo(() => [params.name], [params.name]);
 
   // Basic details
-  const pokemonDetails = useGetPokemonByName(params.name);
+  const pokemonDetails = useFetchPokemons(activePokemonName)?.[0];
   const id = pokemonDetails?.id;
   const speciesName = pokemonDetails?.species.name;
   const weight = pokemonDetails?.weight;
@@ -28,11 +28,10 @@ const Pokemon = function () {
   const baseExp = pokemonDetails?.base_experience;
   const types = pokemonDetails?.types;
   const abilityList = pokemonDetails?.abilities;
-  const name = pokemonDetails?.name;
   const stats = pokemonDetails?.stats;
 
   // Species details
-  const species = useFetchPokemonSpeciesDetails(speciesName);
+  const species = useFetchPokemonSpecies([speciesName])?.[0];
   const flavorTextEntries = species?.flavor_text_entries;
   const genderRate = species?.gender_rate;
   const baseHappiness = species?.base_happiness;
@@ -46,10 +45,11 @@ const Pokemon = function () {
   const evolutionChain = species?.evolution_chain;
 
   // Abilities details
-  const abilities = useFetchAbilities(abilityList)[0];
+  const abilityNames = abilityList?.map((ability) => ability.ability.name);
+  const abilities = useFetchAbilities(abilityNames);
 
   // Types details
-  const { typesDetails, isLoading } = useFetchTypesDetails(types);
+  const { typesDetails } = useFetchTypesDetails(types);
   const damageRelations = typesDetails?.map((details) => {
     return { type: details.name, relations: details.damage_relations };
   });
@@ -57,11 +57,6 @@ const Pokemon = function () {
   // Images
   const images = pokemonDetails?.sprites;
   const artwork = images?.other["official-artwork"].front_default;
-
-  useEffect(
-    () => !params.name || (params.name.length === 0 && navigate("/")),
-    []
-  );
 
   if (!pokemonDetails) return <></>;
 
