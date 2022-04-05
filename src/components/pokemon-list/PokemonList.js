@@ -1,40 +1,26 @@
-import { useMemo, useContext, useEffect } from "react";
-import { Row, Col, Spinner } from "react-bootstrap";
+import { useEffect, useMemo } from "react";
+import { Row, Col } from "react-bootstrap";
 import PokemonCard from "../pokemon-card/PokemonCard";
-import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
-import { PokemonsDetailsContext } from "../../context/pokemonsDetailsContext";
+import usePokemons from "../../hooks/usePokemons";
 
 const PokemonList = function (props) {
   const pokemonNames = useMemo(
-    () => props.results.map((result) => result.name),
-    [props.results]
+    () => props.pokemons.map((pokemon) => pokemon.name),
+    [props.pokemons]
+  );
+  const { pokemons, fetchPokemons } = usePokemons();
+
+  useEffect(
+    () => pokemonNames && fetchPokemons(pokemonNames),
+    [fetchPokemons, pokemonNames]
   );
 
-  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(
-    pokemonNames,
-    (pokemonName) => `/pokemon/${pokemonName}`
-  );
-  const [, setContext] = useContext(PokemonsDetailsContext);
-
-  useEffect(() => {
-    if (!pokemonsDetails.length) return;
-    setContext(pokemonsDetails);
-  }, [pokemonsDetails]);
-
-  if (props.results.length === 0) {
-    return (
-      <div className="d-flex justify-content-center align-items-center h-100">
-        <Spinner animation="border" role="status" />
-      </div>
-    );
-  }
-
-  if (pokemonsDetails) {
+  if (pokemons) {
     return (
       <Row className="d-flex justify-content-center g-3">
-        {pokemonsDetails.map((pokemon) => (
+        {pokemons.map((pokemon) => (
           <Col md lg="auto" key={pokemon.name}>
-            <PokemonCard pokemon={pokemon} isLoading={isLoading} />
+            <PokemonCard pokemon={pokemon} />
           </Col>
         ))}
       </Row>

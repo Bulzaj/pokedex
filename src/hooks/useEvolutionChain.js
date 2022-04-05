@@ -1,37 +1,39 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import FetchError from "../errors/fetchError";
+import { useCallback, useState } from "react";
+import fetch from "../fetch";
 
-const useFetchEvolutionChain = function (url) {
+const useEvolutionChain = function (url) {
   const [chain, setChain] = useState([]);
 
-  useEffect(() => {
-    fetch(url);
-  }, [url]);
+  const applyData = function (data) {
+    const chain = data.chain;
+    const chainArr = [parseEvolutionLink(chain)];
 
-  const fetch = async function (url) {
-    if (!url || url.length === 0) return;
+    let nextLink = chain.evolves_to[0];
 
-    try {
-      const response = await axios.get(url);
-      const chain = response.data.chain;
-
-      const chainArr = [parseEvolutionLink(chain)];
-
-      let nextLink = chain.evolves_to[0];
-
-      while (nextLink) {
-        const tmp = nextLink;
-        chainArr.push(parseEvolutionLink(tmp));
-        nextLink = tmp.evolves_to[0];
-      }
-      setChain(chainArr);
-    } catch (error) {
-      throw new FetchError(error.message);
+    while (nextLink) {
+      const tmp = nextLink;
+      chainArr.push(parseEvolutionLink(tmp));
+      nextLink = tmp.evolves_to[0];
     }
+
+    setChain(chainArr);
   };
 
-  return { chain };
+  const fetchEvolutionChain = useCallback(function (
+    evolutionChainUrl,
+    queryStrings
+  ) {
+    fetch(
+      {
+        url: evolutionChainUrl,
+        queryStrings,
+      },
+      applyData
+    );
+  },
+  []);
+
+  return { chain, fetchEvolutionChain };
 };
 
 const parseEvolutionLink = function (evolutionLink) {
@@ -41,4 +43,4 @@ const parseEvolutionLink = function (evolutionLink) {
   };
 };
 
-export default useFetchEvolutionChain;
+export default useEvolutionChain;

@@ -3,8 +3,9 @@ import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
-import useFetchPokemonNames from "../../hooks/useFetchPokemonNames";
-import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsContext";
+import usePokemons from "../../hooks/usePokemons";
+import { TOTAL_RECORDS } from "../../consts";
+import { useEffect } from "react";
 
 // TODO: Add pokemons to favourite
 // TODO: create general fetch hook
@@ -18,21 +19,28 @@ import { PokemonsDetailsContextProvider } from "../../context/pokemonsDetailsCon
 
 // TODO: insert link to megaform if has one
 
+// FIXME: fix pagination bar current page number display
+
 // FIXME: buton size on mobile
+
 function App() {
-  const pokemonNames = useFetchPokemonNames();
+  const { pokemons, fetchPokemons } = usePokemons();
+  const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
+
+  useEffect(
+    () => fetchPokemons(null, { limit: TOTAL_RECORDS }),
+    [fetchPokemons]
+  );
 
   return (
     <div className="App">
-      <PokemonsDetailsContextProvider>
-        <TopNavbar pokemonNames={pokemonNames} />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/pokemon/:name" element={<Pokemon />} />
-          </Routes>
-        </Container>
-      </PokemonsDetailsContextProvider>
+      <TopNavbar pokemonNames={pokemonNames} />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/pokemon/:name" element={<Pokemon />} />
+        </Routes>
+      </Container>
     </div>
   );
 }

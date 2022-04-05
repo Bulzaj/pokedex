@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
-import useGetPokemonByName from "../../hooks/useGetPokemonByName";
-import useFetchPokemonSpeciesDetails from "../../hooks/useFetchPokemonSpeciesDetails";
-import useFetchAbilities from "../../hooks/useFetchAbilities";
+import { useParams } from "react-router-dom";
+import usePokemonSpecies from "../../hooks/usePokemonSpecies";
+import useAbilities from "../../hooks/useAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfo from "../../components/general-info/generalInfo";
@@ -12,56 +11,90 @@ import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
-import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
+import useTypes from "../../hooks/useTypes";
+import usePokemons from "../../hooks/usePokemons";
+import useEvolutionChain from "../../hooks/useEvolutionChain";
 
 // TODO: add next and previous button
 const Pokemon = function () {
   const params = useParams();
-  const navigate = useNavigate();
+  const activePokemonName = useMemo(() => [params.name], [params.name]);
 
   // Basic details
-  const pokemonDetails = useGetPokemonByName(params.name);
+  const { pokemons, fetchPokemons } = usePokemons();
+
+  useEffect(
+    () => fetchPokemons([activePokemonName]),
+    [fetchPokemons, activePokemonName]
+  );
+
+  const pokemonDetails = pokemons?.[0];
   const id = pokemonDetails?.id;
   const speciesName = pokemonDetails?.species.name;
   const weight = pokemonDetails?.weight;
   const height = pokemonDetails?.height;
   const baseExp = pokemonDetails?.base_experience;
-  const types = pokemonDetails?.types;
+  const typeList = pokemonDetails?.types;
   const abilityList = pokemonDetails?.abilities;
-  const name = pokemonDetails?.name;
   const stats = pokemonDetails?.stats;
 
   // Species details
-  const species = useFetchPokemonSpeciesDetails(speciesName);
-  const flavorTextEntries = species?.flavor_text_entries;
-  const genderRate = species?.gender_rate;
-  const baseHappiness = species?.base_happiness;
-  const isBaby = species?.is_baby;
-  const isLegendary = species?.is_legendary;
-  const isMythical = species?.is_mythical;
-  const evolvesFrom = species?.evolves_from_species;
-  const captureRate = species?.capture_rate;
-  const growthRate = species?.growth_rate.name;
-  const genera = species?.genera;
-  const evolutionChain = species?.evolution_chain;
+  const { species, fetchPokemonSpecies } = usePokemonSpecies();
+
+  useEffect(
+    () => fetchPokemonSpecies([speciesName]),
+    [fetchPokemonSpecies, speciesName, activePokemonName]
+  );
+
+  const speciesDetails = species?.[0];
+  const flavorTextEntries = speciesDetails?.flavor_text_entries;
+  const genderRate = speciesDetails?.gender_rate;
+  const baseHappiness = speciesDetails?.base_happiness;
+  const isBaby = speciesDetails?.is_baby;
+  const isLegendary = speciesDetails?.is_legendary;
+  const isMythical = speciesDetails?.is_mythical;
+  const evolvesFrom = speciesDetails?.evolves_from_species;
+  const captureRate = speciesDetails?.capture_rate;
+  const growthRate = speciesDetails?.growth_rate.name;
+  const genera = speciesDetails?.genera;
+  const evolutionChain = speciesDetails?.evolution_chain;
 
   // Abilities details
-  const abilities = useFetchAbilities(abilityList)[0];
+  const abilityNames = useMemo(
+    () => abilityList?.map((ability) => ability.ability.name),
+    [abilityList]
+  );
+  const { abilities, fetchAbilities } = useAbilities();
+
+  useEffect(() => {
+    abilityNames && fetchAbilities(abilityNames);
+  }, [fetchAbilities, abilityNames, activePokemonName]);
 
   // Types details
-  const { typesDetails, isLoading } = useFetchTypesDetails(types);
-  const damageRelations = typesDetails?.map((details) => {
+  const typeNames = useMemo(
+    () => typeList?.map((type) => type.type.name),
+    [typeList]
+  );
+  const { types, fetchTypes } = useTypes();
+
+  useEffect(() => {
+    typeNames && fetchTypes(typeNames);
+  }, [fetchTypes, typeNames]);
+
+  const damageRelations = types?.map((details) => {
     return { type: details.name, relations: details.damage_relations };
   });
+
+  // Evolution chain details
+  const { chain, fetchEvolutionChain } = useEvolutionChain();
+
+  useEffect(() => {
+    evolutionChain && fetchEvolutionChain(evolutionChain.url);
+  }, [fetchEvolutionChain, evolutionChain, activePokemonName]);
 
   // Images
   const images = pokemonDetails?.sprites;
   const artwork = images?.other["official-artwork"].front_default;
-
-  useEffect(
-    () => !params.name || (params.name.length === 0 && navigate("/")),
-    []
-  );
 
   if (!pokemonDetails) return <></>;
 
@@ -93,10 +126,9 @@ const Pokemon = function () {
       </Row>
       <Row xs={1} lg={2}>
         <Col>
-          <Image
-            src={artwork}
-            className="rounded img-fluid mx-auto d-block bg-light"
-          />
+          <Container fluid className="bg-light rounded p-2">
+            <Image src={artwork} className="img-fluid mx-auto d-block" />
+          </Container>
           <StatsInfo stats={stats} />
           <PokemonTypes types={types} />
         </Col>
@@ -109,7 +141,7 @@ const Pokemon = function () {
       </Row>
       <Row>
         <Col>
-          <EvolutionChain evolutionChainUrl={evolutionChain?.url} />
+          <EvolutionChain evolutionChain={chain} />
         </Col>
       </Row>
     </Container>
