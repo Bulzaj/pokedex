@@ -45,9 +45,9 @@ const AbilitiesInfo = function (props) {
           </Accordion.Header>
           <AccordionBody>
             <p>
-              {ability.effect_entries[1]
-                ? ability.effect_entries[1].effect
-                : ability.effect_entries[0].effect}
+              {ability.effect_entries
+                .filter((ability) => ability.language.name === "en")
+                .map((ability) => ability.effect)}
             </p>
             <div className="d-flex justify-content-center mt-3">
               <Button
