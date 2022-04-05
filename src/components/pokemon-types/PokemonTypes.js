@@ -5,8 +5,6 @@ import { Spinner } from "react-bootstrap";
 const PokemonTypes = function (props) {
   if (!props.types) return <Spinner animation="border" role="status" />;
 
-  console.log(props.types);
-
   return (
     <Container fluid className="bg-light rounded p-2">
       <h3 className="display-3">

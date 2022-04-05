@@ -5,6 +5,7 @@ import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
 import useFetchPokemons from "../../hooks/useFetchPokemons";
 import { TOTAL_RECORDS } from "../../consts";
+import { useEffect } from "react";
 
 // TODO: Add pokemons to favourite
 // TODO: create general fetch hook
@@ -18,10 +19,17 @@ import { TOTAL_RECORDS } from "../../consts";
 
 // TODO: insert link to megaform if has one
 
+// FIXME: fix pagination bar current page number display
+
 // FIXME: buton size on mobile
 function App() {
-  const { pokemons } = useFetchPokemons(null, { limit: TOTAL_RECORDS });
-  const pokemonNames = pokemons?.results.map((pokemon) => pokemon.name);
+  const { pokemons, fetchPokemons } = useFetchPokemons();
+  const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
+
+  useEffect(
+    () => fetchPokemons(null, { limit: TOTAL_RECORDS }),
+    [fetchPokemons]
+  );
 
   return (
     <div className="App">

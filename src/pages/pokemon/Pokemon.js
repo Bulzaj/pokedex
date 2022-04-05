@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useFetchPokemonSpecies from "../../hooks/useFetchPokemonSpecies";
@@ -20,7 +20,14 @@ const Pokemon = function () {
   const activePokemonName = useMemo(() => [params.name], [params.name]);
 
   // Basic details
-  const pokemonDetails = useFetchPokemons(activePokemonName)?.[0];
+  const { pokemons, fetchPokemons } = useFetchPokemons();
+
+  useEffect(
+    () => fetchPokemons([activePokemonName]),
+    [fetchPokemons, activePokemonName]
+  );
+
+  const pokemonDetails = pokemons?.[0];
   const id = pokemonDetails?.id;
   const speciesName = pokemonDetails?.species.name;
   const weight = pokemonDetails?.weight;

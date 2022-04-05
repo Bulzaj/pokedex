@@ -56,7 +56,7 @@ const fetchIds = async function (endpoint, ids, queryStrings, applyData) {
 const fetchNoIds = async function (endpoint, queryStrings, applyData) {
   try {
     const response = await get(endpoint, null, queryStrings, applyData);
-    applyData(response.data);
+    applyData(response.data.results);
   } catch (error) {
     console.error(error);
   }
