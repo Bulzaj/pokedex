@@ -6,6 +6,7 @@ import EvolutionChainTitle from "./evolutionChainTitle";
 import EvolutionChainSpinner from "./evolutionChainSpinner";
 import EvolutionChainContent from "./evolutionChainContent";
 import EvolutionChainCollapse from "./evolutionChainCollapse";
+import { scrollTop } from "../../utils";
 
 const EvolutionChain = function (props) {
   const { evolutionChain } = props;
@@ -25,8 +26,9 @@ const EvolutionChain = function (props) {
   const titleRef = useRef();
 
   const handleFigureClick = function (pokemonName) {
-    if (pokemonName === urlParams) return;
+    if (pokemonName === urlParams.name) return;
     navigate(`/pokemon/${pokemonName}`);
+    scrollTop();
   };
 
   const handleInfoBtnClick = function (chainLink) {
