@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import useFetchPokemonSpecies from "../../hooks/useFetchPokemonSpecies";
+import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 import useFetchAbilities from "../../hooks/useFetchAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
@@ -38,18 +38,25 @@ const Pokemon = function () {
   const stats = pokemonDetails?.stats;
 
   // Species details
-  const species = useFetchPokemonSpecies([speciesName])?.[0];
-  const flavorTextEntries = species?.flavor_text_entries;
-  const genderRate = species?.gender_rate;
-  const baseHappiness = species?.base_happiness;
-  const isBaby = species?.is_baby;
-  const isLegendary = species?.is_legendary;
-  const isMythical = species?.is_mythical;
-  const evolvesFrom = species?.evolves_from_species;
-  const captureRate = species?.capture_rate;
-  const growthRate = species?.growth_rate.name;
-  const genera = species?.genera;
-  const evolutionChain = species?.evolution_chain;
+  const { species, fetchPokemonSpecies } = usePokemonSpecies();
+
+  useEffect(
+    () => fetchPokemonSpecies([speciesName]),
+    [fetchPokemonSpecies, speciesName]
+  );
+
+  const speciesDetails = species?.[0];
+  const flavorTextEntries = speciesDetails?.flavor_text_entries;
+  const genderRate = speciesDetails?.gender_rate;
+  const baseHappiness = speciesDetails?.base_happiness;
+  const isBaby = speciesDetails?.is_baby;
+  const isLegendary = speciesDetails?.is_legendary;
+  const isMythical = speciesDetails?.is_mythical;
+  const evolvesFrom = speciesDetails?.evolves_from_species;
+  const captureRate = speciesDetails?.capture_rate;
+  const growthRate = speciesDetails?.growth_rate.name;
+  const genera = speciesDetails?.genera;
+  const evolutionChain = speciesDetails?.evolution_chain;
 
   // Abilities details
   const abilityNames = abilityList?.map((ability) => ability.ability.name);
