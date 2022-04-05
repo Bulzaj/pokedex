@@ -15,7 +15,6 @@ const EvolutionChainContent = function (props) {
     <Row xs={1} md="auto" className="justify-content-center">
       {pokemons &&
         pokemons.map((pokemon) => {
-          console.log(pokemon.name);
           const otherImages = pokemon.sprites.other;
           const image =
             otherImages.dream_world.front_default ||
@@ -48,7 +47,7 @@ const EvolutionChainContent = function (props) {
                   </strong>
                 </h3>
               </div>
-              {chainLink.evolutionDetails && (
+              {chainLink?.evolutionDetails && (
                 <span
                   className="hover-info"
                   style={{ fontSize: "54px" }}

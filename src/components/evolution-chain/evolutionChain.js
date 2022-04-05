@@ -14,8 +14,6 @@ const EvolutionChain = function (props) {
     [evolutionChain]
   );
 
-  console.log(pokemonNames);
-
   const { pokemons, fetchPokemons } = usePokemons();
 
   useEffect(() => fetchPokemons(pokemonNames), [fetchPokemons, pokemonNames]);
