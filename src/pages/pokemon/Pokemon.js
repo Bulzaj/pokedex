@@ -89,10 +89,9 @@ const Pokemon = function () {
       </Row>
       <Row xs={1} lg={2}>
         <Col>
-          <Image
-            src={artwork}
-            className="rounded img-fluid mx-auto d-block bg-light"
-          />
+          <Container fluid className="bg-light rounded p-2">
+            <Image src={artwork} className="img-fluid mx-auto d-block" />
+          </Container>
           <StatsInfo stats={stats} />
           <PokemonTypes types={types} />
         </Col>
