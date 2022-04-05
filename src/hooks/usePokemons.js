@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import fetch from "../fetch";
 
-const useFetchPokemons = function () {
+const usePokemons = function () {
   const [pokemons, setPokemons] = useState();
 
   const applyData = (data) => {
@@ -25,4 +25,4 @@ const useFetchPokemons = function () {
   };
 };
 
-export default useFetchPokemons;
+export default usePokemons;

@@ -12,7 +12,7 @@ import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useFetchTypes from "../../hooks/useFetchTypes";
-import useFetchPokemons from "../../hooks/useFetchPokemons";
+import usePokemons from "../../hooks/usePokemons";
 
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -20,7 +20,7 @@ const Pokemon = function () {
   const activePokemonName = useMemo(() => [params.name], [params.name]);
 
   // Basic details
-  const { pokemons, fetchPokemons } = useFetchPokemons();
+  const { pokemons, fetchPokemons } = usePokemons();
 
   useEffect(
     () => fetchPokemons([activePokemonName]),

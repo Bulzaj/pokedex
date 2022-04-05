@@ -2,13 +2,13 @@ import PokemonList from "../../components/pokemon-list/PokemonList";
 import PaginationBar from "../../components/pagination-bar/PaginationBar";
 import { scrollTop } from "../../utils";
 import { PER_PAGE_LIMIT, TOTAL_RECORDS } from "../../consts";
-import useFetchPokemons from "../../hooks/useFetchPokemons";
+import usePokemons from "../../hooks/usePokemons";
 import { Container, Spinner } from "react-bootstrap";
 import { useEffect } from "react";
 
 // TODO: Improve that ugly grid gallery component
 const Main = function () {
-  const { pokemons, fetchPokemons } = useFetchPokemons();
+  const { pokemons, fetchPokemons } = usePokemons();
 
   useEffect(() => {
     fetchPokemons(null, {

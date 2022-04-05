@@ -3,7 +3,7 @@ import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
-import useFetchPokemons from "../../hooks/useFetchPokemons";
+import usePokemons from "../../hooks/usePokemons";
 import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
 
@@ -23,7 +23,7 @@ import { useEffect } from "react";
 
 // FIXME: buton size on mobile
 function App() {
-  const { pokemons, fetchPokemons } = useFetchPokemons();
+  const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
 
   useEffect(
