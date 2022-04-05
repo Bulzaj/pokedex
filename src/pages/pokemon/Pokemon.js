@@ -11,7 +11,7 @@ import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
-import useFetchTypes from "../../hooks/useFetchTypes";
+import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
 
 // TODO: add next and previous button
@@ -72,8 +72,16 @@ const Pokemon = function () {
   }, [fetchAbilities, abilityNames]);
 
   // Types details
-  const typeNames = typeList?.map((type) => type.type.name);
-  const types = useFetchTypes(typeNames);
+  const typeNames = useMemo(
+    () => typeList?.map((type) => type.type.name),
+    [typeList]
+  );
+  const { types, fetchTypes } = useTypes();
+
+  useEffect(() => {
+    typeNames && fetchTypes(typeNames);
+  }, [fetchTypes, typeNames]);
+
   const damageRelations = types?.map((details) => {
     return { type: details.name, relations: details.damage_relations };
   });
