@@ -8,43 +8,12 @@ const PokemonCard = function (props) {
   const { pokemon } = props;
   const image = pokemon.sprites.other.dream_world.front_default;
   const types = pokemon.types;
-
   const navigate = useNavigate();
 
   const handleClick = function (e) {
     e.preventDefault();
     navigate(`/pokemon/${pokemon.name}`);
   };
-
-  if (props.isLoading) {
-    return (
-      <Card
-        className="shadow"
-        style={{
-          minWidth: "290px",
-        }}
-      >
-        <div className="d-flex justify-content-center align-items-center h-100">
-          <Spinner animation="grow" role="status" />
-        </div>
-        <Card.Body>
-          <Placeholder as={Card.Title} animation="glow">
-            <Placeholder xs={6} />
-          </Placeholder>
-          <Placeholder as={Card.Text} animation="glow">
-            <Placeholder xs={3} /> <Placeholder xs={6} />
-          </Placeholder>
-          <Placeholder as={Card.Text} animation="glow">
-            <Placeholder xs={2} /> <Placeholder xs={4} />
-          </Placeholder>
-          <Placeholder as={Card.Text} animation="glow">
-            <Placeholder xs={3} /> <Placeholder xs={5} />
-          </Placeholder>
-        </Card.Body>
-        <Card.Footer></Card.Footer>
-      </Card>
-    );
-  }
 
   return (
     <Card className="card shadow interactive" onClick={handleClick}>

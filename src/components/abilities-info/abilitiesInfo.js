@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   Container,
@@ -9,17 +9,19 @@ import {
   Spinner,
 } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
-import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
 import { capitalizeFirstLetter } from "../../utils";
+import usePokemons from "../../hooks/usePokemons";
 
 // TODO: move version select to pokemon detail page and add flavour_text_desc || or not ?
 const AbilitiesInfo = function (props) {
   const [show, setShow] = useState(false);
   const [ability, setAbility] = useState();
   const [pokemonNames, setPokemonNames] = useState();
-  const { pokemonsDetails, isLoading } = useFetchPokemonDetails(
-    pokemonNames,
-    (name) => `/pokemon/${name}`
+  const { pokemons, fetchPokemons } = usePokemons();
+
+  useEffect(
+    () => pokemonNames && fetchPokemons(pokemonNames),
+    [pokemonNames, fetchPokemons]
   );
 
   const modalHandleShow = function (ability) {
@@ -68,13 +70,13 @@ const AbilitiesInfo = function (props) {
       <Spinner animation="border" role="status" />
     </div>
   );
-  if (!isLoading && pokemonsDetails) {
+  if (pokemons) {
     list = (
       <ListGroup
         variant="flush"
         defaultActiveKey={`/pokemon/${props.pokemonName}`}
       >
-        {pokemonsDetails?.map((pokemon) => {
+        {pokemons?.map((pokemon) => {
           return (
             <ListGroup.Item
               href={`/pokemon/${pokemon.name}`}
