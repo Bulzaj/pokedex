@@ -13,13 +13,13 @@ const fetch = async function (requestConfig, applyData) {
   const { endpoint, ids, queryStrings } = requestConfig;
 
   if (requestConfig.url) {
-    fetchUrl(requestConfig.url, applyData);
+    return fetchUrl(requestConfig.url, applyData);
   }
 
   if (ids) {
-    fetchIds(endpoint, ids, queryStrings, applyData);
+    return fetchIds(endpoint, ids, queryStrings, applyData);
   } else {
-    fetchNoIds(endpoint, queryStrings, applyData);
+    return fetchNoIds(endpoint, queryStrings, applyData);
   }
 };
 
@@ -33,10 +33,8 @@ const fetchUrl = async function (url, applyData) {
   try {
     const result = await axios.get(url);
     applyData(result.data);
-    return 1;
   } catch (error) {
     console.error(error);
-    return -1;
   }
 };
 
