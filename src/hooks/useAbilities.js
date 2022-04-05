@@ -5,7 +5,6 @@ const useAbilities = function () {
   const [abilities, setAbilities] = useState();
 
   const applyData = function (data) {
-    console.log(data);
     setAbilities(data);
   };
 

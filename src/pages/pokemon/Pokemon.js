@@ -65,8 +65,6 @@ const Pokemon = function () {
   );
   const { abilities, fetchAbilities } = useAbilities();
 
-  console.log(abilities);
-
   useEffect(() => {
     abilityNames && fetchAbilities(abilityNames);
   }, [fetchAbilities, abilityNames]);
