@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import usePokemonSpecies from "../../hooks/usePokemonSpecies";
-import useFetchAbilities from "../../hooks/useFetchAbilities";
+import useAbilities from "../../hooks/useAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfo from "../../components/general-info/generalInfo";
@@ -59,8 +59,17 @@ const Pokemon = function () {
   const evolutionChain = speciesDetails?.evolution_chain;
 
   // Abilities details
-  const abilityNames = abilityList?.map((ability) => ability.ability.name);
-  const abilities = useFetchAbilities(abilityNames);
+  const abilityNames = useMemo(
+    () => abilityList?.map((ability) => ability.ability.name),
+    [abilityList]
+  );
+  const { abilities, fetchAbilities } = useAbilities();
+
+  console.log(abilities);
+
+  useEffect(() => {
+    abilityNames && fetchAbilities(abilityNames);
+  }, [fetchAbilities, abilityNames]);
 
   // Types details
   const typeNames = typeList?.map((type) => type.type.name);
