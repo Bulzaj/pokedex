@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import PokemonCard from "../pokemon-card/PokemonCard";
 import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
 
