@@ -1,4 +1,4 @@
-import { Card, Placeholder, Spinner } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { capitalizeFirstLetter, generateGradient } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import "./pokemonCard.css";
