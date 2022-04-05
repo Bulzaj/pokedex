@@ -13,6 +13,7 @@ import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
+import useEvolutionChain from "../../hooks/useEvolutionChain";
 
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -42,7 +43,7 @@ const Pokemon = function () {
 
   useEffect(
     () => fetchPokemonSpecies([speciesName]),
-    [fetchPokemonSpecies, speciesName]
+    [fetchPokemonSpecies, speciesName, activePokemonName]
   );
 
   const speciesDetails = species?.[0];
@@ -67,7 +68,7 @@ const Pokemon = function () {
 
   useEffect(() => {
     abilityNames && fetchAbilities(abilityNames);
-  }, [fetchAbilities, abilityNames]);
+  }, [fetchAbilities, abilityNames, activePokemonName]);
 
   // Types details
   const typeNames = useMemo(
@@ -83,6 +84,13 @@ const Pokemon = function () {
   const damageRelations = types?.map((details) => {
     return { type: details.name, relations: details.damage_relations };
   });
+
+  // Evolution chain details
+  const { chain, fetchEvolutionChain } = useEvolutionChain();
+
+  useEffect(() => {
+    evolutionChain && fetchEvolutionChain(evolutionChain.url);
+  }, [fetchEvolutionChain, evolutionChain, activePokemonName]);
 
   // Images
   const images = pokemonDetails?.sprites;
@@ -133,7 +141,7 @@ const Pokemon = function () {
       </Row>
       <Row>
         <Col>
-          <EvolutionChain evolutionChainUrl={evolutionChain?.url} />
+          <EvolutionChain evolutionChain={chain} />
         </Col>
       </Row>
     </Container>

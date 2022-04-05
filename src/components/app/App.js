@@ -22,6 +22,8 @@ import { useEffect } from "react";
 // FIXME: fix pagination bar current page number display
 
 // FIXME: buton size on mobile
+
+// FIXME: search bar does not work on pokemon site level (Because of evolution chain section) :(
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
