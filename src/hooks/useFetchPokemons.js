@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react";
-import { TOTAL_RECORDS } from "../consts";
+import { useEffect, useMemo, useState } from "react";
 import fetch from "../fetch";
 
-const useFetchPokemons = function (pokemonNames = null) {
+const useFetchPokemons = function (pokemonNames = null, queryStrings = null) {
   const [pokemons, setPokemons] = useState();
+
+  const requestConfig = useMemo(
+    () => ({
+      endpoint: "pokemon",
+      ids: pokemonNames,
+      queryStrings,
+    }),
+    [pokemonNames, queryStrings]
+  );
+
+  const applyData = (data) => setPokemons(data);
 
   useEffect(() => {
     if (pokemons) return;
-    let queryStrings = null;
-    if (!pokemonNames)
-      queryStrings = {
-        limit: TOTAL_RECORDS,
-      };
+    fetch(requestConfig, applyData);
+  }, [pokemons, requestConfig]);
 
-    fetch(
-      {
-        endpoint: "pokemon",
-        ids: pokemonNames,
-        queryStrings,
-      },
-      (data) => setPokemons(data)
-    );
-  }, [pokemons, pokemonNames]);
-
-  return pokemons;
+  return {
+    pokemons,
+    fetchPokemons: (pokemonNames, queryStrings) =>
+      fetch({ ...requestConfig, pokemonNames, queryStrings }, applyData),
+  };
 };
 
 export default useFetchPokemons;

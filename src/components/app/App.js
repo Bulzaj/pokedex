@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
 import useFetchPokemons from "../../hooks/useFetchPokemons";
+import { TOTAL_RECORDS } from "../../consts";
 
 // TODO: Add pokemons to favourite
 // TODO: create general fetch hook
@@ -19,9 +20,8 @@ import useFetchPokemons from "../../hooks/useFetchPokemons";
 
 // FIXME: buton size on mobile
 function App() {
-  const pokemonNames = useFetchPokemons()?.results.map(
-    (pokemon) => pokemon.name
-  );
+  const { pokemons } = useFetchPokemons(null, { limit: TOTAL_RECORDS });
+  const pokemonNames = pokemons?.results.map((pokemon) => pokemon.name);
 
   return (
     <div className="App">

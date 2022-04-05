@@ -1,12 +1,12 @@
-import { useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import PokemonCard from "../pokemon-card/PokemonCard";
 import useFetchPokemonDetails from "../../hooks/useFetchPokemonsDetails";
 
 const PokemonList = function (props) {
   const pokemonNames = useMemo(
-    () => props.results.map((result) => result.name),
-    [props.results]
+    () => props.pokemons.map((pokemon) => pokemon.name),
+    [props.pokemons]
   );
 
   const { pokemonsDetails, isLoading } = useFetchPokemonDetails(
@@ -14,9 +14,9 @@ const PokemonList = function (props) {
     (pokemonName) => `/pokemon/${pokemonName}`
   );
 
-  if (props.results.length === 0) {
+  if (props.pokemons.length === 0) {
     return (
-      <div className="d-flex justify-content-center align-items-center h-100">
+      <div className="d-flex justify-content-center align-items-center vh-100">
         <Spinner animation="border" role="status" />
       </div>
     );
