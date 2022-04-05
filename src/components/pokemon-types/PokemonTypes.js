@@ -1,7 +1,12 @@
 import { Container, Button } from "react-bootstrap";
 import { capitalizeFirstLetter } from "../../utils";
+import { Spinner } from "react-bootstrap";
 
 const PokemonTypes = function (props) {
+  if (!props.types) return <Spinner animation="border" role="status" />;
+
+  console.log(props.types);
+
   return (
     <Container fluid className="bg-light rounded p-2">
       <h3 className="display-3">
@@ -17,11 +22,11 @@ const PokemonTypes = function (props) {
         {props?.types.map((type) => (
           <Button
             className="w-25"
-            key={type.type.name}
+            key={type.name}
             size="lg"
-            variant={type.type.name}
+            variant={type.name}
           >
-            {capitalizeFirstLetter(type.type.name)}
+            {capitalizeFirstLetter(type.name)}
           </Button>
         ))}
       </div>

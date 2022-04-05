@@ -11,7 +11,7 @@ import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
 import DamageRelations from "../../components/damage-relations/damageRelations";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
-import useFetchTypesDetails from "../../hooks/useFetchTypesDetails";
+import useFetchTypes from "../../hooks/useFetchTypes";
 import useFetchPokemons from "../../hooks/useFetchPokemons";
 
 // TODO: add next and previous button
@@ -26,7 +26,7 @@ const Pokemon = function () {
   const weight = pokemonDetails?.weight;
   const height = pokemonDetails?.height;
   const baseExp = pokemonDetails?.base_experience;
-  const types = pokemonDetails?.types;
+  const typeList = pokemonDetails?.types;
   const abilityList = pokemonDetails?.abilities;
   const stats = pokemonDetails?.stats;
 
@@ -49,8 +49,9 @@ const Pokemon = function () {
   const abilities = useFetchAbilities(abilityNames);
 
   // Types details
-  const { typesDetails } = useFetchTypesDetails(types);
-  const damageRelations = typesDetails?.map((details) => {
+  const typeNames = typeList?.map((type) => type.type.name);
+  const types = useFetchTypes(typeNames);
+  const damageRelations = types?.map((details) => {
     return { type: details.name, relations: details.damage_relations };
   });
 
