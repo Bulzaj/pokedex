@@ -14,14 +14,6 @@ const PokemonList = function (props) {
     (pokemonName) => `/pokemon/${pokemonName}`
   );
 
-  if (props.pokemons.length === 0) {
-    return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <Spinner animation="border" role="status" />
-      </div>
-    );
-  }
-
   if (pokemonsDetails) {
     return (
       <Row className="d-flex justify-content-center g-3">
