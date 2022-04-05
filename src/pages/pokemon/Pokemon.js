@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 import useAbilities from "../../hooks/useAbilities";
@@ -14,6 +14,7 @@ import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
 import useEvolutionChain from "../../hooks/useEvolutionChain";
+import PreviewImageSection from "../../components/sections/preview-image-section/previewImageSection";
 
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -126,9 +127,7 @@ const Pokemon = function () {
       </Row>
       <Row xs={1} lg={2}>
         <Col>
-          <Container fluid className="bg-light rounded p-2">
-            <Image src={artwork} className="img-fluid mx-auto d-block" />
-          </Container>
+          <PreviewImageSection artwork={artwork} />
           <StatsInfo stats={stats} />
           <PokemonTypes types={types} />
         </Col>
