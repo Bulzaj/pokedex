@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import usePokemons from "../../../hooks/usePokemons";
 import EvolutionChainTitle from "./evolutionChainTitle";
 import EvolutionChainSpinner from "./evolutionChainSpinner";
 import EvolutionChainContent from "./evolutionChainContent";
 import EvolutionChainCollapse from "./evolutionChainCollapse";
+import Section from "../../section/section";
 import { scrollTop } from "../../../utils";
 
 const EvolutionChainSection = function (props) {
@@ -58,17 +58,22 @@ const EvolutionChainSection = function (props) {
   }
 
   return (
-    <Container className="bg-dark text-light rounded p-2">
-      <h3 ref={titleRef} className="display-3">
-        <EvolutionChainTitle />
-      </h3>
-      <EvolutionChainCollapse
-        showEvolutionInfo={showEvolutionInfo}
-        selectedChainLink={selectedChainLink}
-        handleCloseInfoBtnClick={handleCloseInfoBtnClick}
-      />
-      {content}
-    </Container>
+    <>
+      <span ref={titleRef} />
+      <Section
+        bg="dark"
+        text="light"
+        id="evolution-chain"
+        title={<EvolutionChainTitle selectedChainLink={selectedChainLink} />}
+      >
+        <EvolutionChainCollapse
+          showEvolutionInfo={showEvolutionInfo}
+          selectedChainLink={selectedChainLink}
+          handleCloseInfoBtnClick={handleCloseInfoBtnClick}
+        />
+        {content}
+      </Section>
+    </>
   );
 };
 
