@@ -15,6 +15,7 @@ import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
 import useEvolutionChain from "../../hooks/useEvolutionChain";
 import PreviewImageSection from "../../components/sections/preview-image-section/previewImageSection";
+import TitleBar from "../../components/title-bar/titleBar";
 
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -119,10 +120,11 @@ const Pokemon = function () {
     <Container className="mt-3">
       <Row className="justify-content-center mb-2">
         <Col>
-          <h1 className="display-1 text-center">
+          <TitleBar currentPokemonName={params.name} currentPokemonId={id} />
+          {/* <h1 className="display-1 text-center">
             {capitalizeFirstLetter(pokemonDetails?.name) + " "}
             <strong className="text-muted">#{`${id}`.padStart(3, 0)}</strong>
-          </h1>
+          </h1> */}
         </Col>
       </Row>
       <Row xs={1} lg={2}>
