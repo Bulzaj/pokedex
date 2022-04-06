@@ -1,6 +1,6 @@
 import { Container, Collapse, Button } from "react-bootstrap";
-import RegularList from "../../components/regular-list/regularList";
-import { evolutionDetailParser } from "../../utils";
+import RegularList from "../../regular-list/regularList";
+import { evolutionDetailParser } from "../../../utils";
 
 const EvolutionChainCollapse = function (props) {
   const { showEvolutionInfo, selectedChainLink, handleCloseInfoBtnClick } =

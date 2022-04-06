@@ -1,5 +1,5 @@
 import { Row, Col, Image } from "react-bootstrap";
-import { capitalizeFirstLetter } from "../../utils";
+import { capitalizeFirstLetter } from "../../../utils";
 import { BsInfoCircle } from "react-icons/bs";
 
 const EvolutionChainContent = function (props) {

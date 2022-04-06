@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Container,
   Row,
   Col,
   ListGroup,
-  Form,
   Badge,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { capitalizeFirstLetter } from "../../utils";
 
-const GeneralInfo = function (props) {
+import { capitalizeFirstLetter } from "../../../utils";
+import Section from "../../section/section";
+import MeasurementUnitsSwitch from "./measurementUnitsSwitch";
+import ShowGender from "./showGender";
+
+const GeneralInfoSection = function (props) {
   const [height, setHeight] = useState();
   const [weight, setWeight] = useState();
 
@@ -27,9 +28,9 @@ const GeneralInfo = function (props) {
   };
 
   return (
-    <Container fluid className="bg-info rounded p-2">
-      <h3 className="display-3 text-light">Basic info</h3>
+    <Section title="Basic info" bg="info" text="light">
       <Row xs={1} md={2}>
+        {/* --- Col left ---*/}
         <Col>
           <ListGroup>
             <ListGroup.Item
@@ -69,7 +70,7 @@ const GeneralInfo = function (props) {
                 }
               >
                 <span>
-                  <Gender genderRate={props.info.genderRate} />
+                  <ShowGender genderRate={props.info.genderRate} />
                   <Badge bg="info"> ? </Badge>
                 </span>
               </OverlayTrigger>
@@ -95,13 +96,15 @@ const GeneralInfo = function (props) {
               placement="left"
               delay={{ show: 250, hide: 450 }}
               overlay={
-                <Tooltip id="genderRateTooltip">
+                <Tooltip id="evolvesFromTooltip">
                   The Pokémon species that evolves into this Pokemon species
                 </Tooltip>
               }
             >
               <span>
-                {capitalizeFirstLetter(props.info.evolvesFrom?.name)}{" "}
+                {capitalizeFirstLetter(
+                  props.info.evolvesFrom?.name || "First form"
+                )}{" "}
                 <Badge bg="info"> ? </Badge>
               </span>
             </OverlayTrigger>
@@ -128,6 +131,8 @@ const GeneralInfo = function (props) {
             </OverlayTrigger>
           </ListGroup.Item>
         </Col>
+
+        {/* --- Col right ---*/}
         <Col>
           <ListGroup>
             <ListGroup.Item
@@ -241,42 +246,8 @@ const GeneralInfo = function (props) {
         </Col>
       </Row>
       <MeasurementUnitsSwitch onUnitsSwitch={handleOnUnitsSwitch} />
-    </Container>
+    </Section>
   );
 };
 
-const MeasurementUnitsSwitch = function (props) {
-  const [isImperial, setIsImperial] = useState(false);
-
-  useEffect(() => {
-    props.onUnitsSwitch && props.onUnitsSwitch(isImperial);
-  }, [isImperial]);
-
-  return (
-    <Form>
-      <Form.Group>
-        <Form.Check
-          className="text-light"
-          onChange={() => setIsImperial((prevState) => !prevState)}
-          checked={isImperial}
-          type="switch"
-          id="toMetricSwitch"
-          label="Switch to imperial system"
-        />
-      </Form.Group>
-    </Form>
-  );
-};
-
-const Gender = function (props) {
-  if (props.genderRate < 0) return "UNKNOWN";
-  if (props.genderRate === 0) return <BsGenderMale />;
-  if (props.genderRate === 8) return <BsGenderFemale />;
-  return (
-    <>
-      <BsGenderMale /> <BsGenderFemale />
-    </>
-  );
-};
-
-export default GeneralInfo;
+export default GeneralInfoSection;

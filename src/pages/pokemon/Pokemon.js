@@ -1,19 +1,20 @@
 import { useEffect, useMemo } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 import useAbilities from "../../hooks/useAbilities";
 import { capitalizeFirstLetter } from "../../utils";
-import SpeciesDesc from "../../components/species-desc/speciesDesc";
-import GeneralInfo from "../../components/general-info/generalInfo";
-import AbilitiesInfo from "../../components/abilities-info/abilitiesInfo";
-import StatsInfo from "../../components/stats-info/statsInfo";
-import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
-import DamageRelations from "../../components/damage-relations/damageRelations";
-import EvolutionChain from "../../components/evolution-chain/evolutionChain";
+import SpeciesDescSection from "../../components/sections/species-desc-section/speciesDescSection";
+import GeneralInfoSection from "../../components/sections/general-info-section/generalInfoSection";
+import AbilitiesInfoSection from "../../components/sections/abilities-info-section/abilitiesInfoSection";
+import StatsInfoSection from "../../components/sections/stats-info-section/statsInfoSection";
+import PokemonTypesSection from "../../components/sections/pokemon-types-section/pokemonTypesSection";
+import DamageRelationsSection from "../../components/sections/damage-relations-section/damageRelationsSection";
+import EvolutionChainSection from "../../components/sections/evolution-chain-section/evolutionChainSection";
 import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
 import useEvolutionChain from "../../hooks/useEvolutionChain";
+import PreviewImageSection from "../../components/sections/preview-image-section/previewImageSection";
 
 // TODO: add next and previous button
 const Pokemon = function () {
@@ -126,22 +127,23 @@ const Pokemon = function () {
       </Row>
       <Row xs={1} lg={2}>
         <Col>
-          <Container fluid className="bg-light rounded p-2">
-            <Image src={artwork} className="img-fluid mx-auto d-block" />
-          </Container>
-          <StatsInfo stats={stats} />
-          <PokemonTypes types={types} />
+          <PreviewImageSection artwork={artwork} />
+          <StatsInfoSection stats={stats} />
+          <PokemonTypesSection types={types} />
         </Col>
         <Col>
-          <SpeciesDesc flavorTextEntries={flavorTextEntries} />
-          <GeneralInfo info={basicInfo} />
-          <AbilitiesInfo abilities={abilities} />
-          <DamageRelations relations={damageRelations} />
+          <SpeciesDescSection flavorTextEntries={flavorTextEntries} />
+          <GeneralInfoSection info={basicInfo} />
+          <AbilitiesInfoSection
+            abilities={abilities}
+            actualPokemon={activePokemonName}
+          />
+          <DamageRelationsSection relations={damageRelations} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <EvolutionChain evolutionChain={chain} />
+          <EvolutionChainSection evolutionChain={chain} />
         </Col>
       </Row>
     </Container>

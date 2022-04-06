@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "../../utils";
+import { capitalizeFirstLetter } from "../../../utils";
 
 const EvolutionChainTitle = function (props) {
   const { selectedChainLink } = props;
