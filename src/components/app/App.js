@@ -32,6 +32,8 @@ import { useEffect } from "react";
 
 // TODO: mention about locations
 
+// TODO: mention about moves
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
