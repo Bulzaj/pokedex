@@ -9,7 +9,7 @@ import GeneralInfo from "../../components/general-info/generalInfo";
 import AbilitiesInfoSection from "../../components/sections/abilities-info-section/abilitiesInfoSection";
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
-import DamageRelations from "../../components/damage-relations/damageRelations";
+import DamageRelationsSection from "../../components/sections/damage-relations-section/damageRelationsSection";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
@@ -138,7 +138,7 @@ const Pokemon = function () {
             abilities={abilities}
             actualPokemon={activePokemonName}
           />
-          <DamageRelations relations={damageRelations} />
+          <DamageRelationsSection relations={damageRelations} />
         </Col>
       </Row>
       <Row>

@@ -19,6 +19,12 @@ import { useEffect } from "react";
 
 // TODO: insert link to megaform if has one
 
+// TODO: create image component with placeholder when loading
+
+// TODO: create separate image button component instead of figures in evolution chain section
+
+// TODO: use sass to create better type colors variants
+
 // FIXME: fix pagination bar current page number display
 
 // FIXME: buton size on mobile
