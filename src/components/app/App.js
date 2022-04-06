@@ -30,6 +30,8 @@ import { useEffect } from "react";
 
 // FIXME: buton size on mobile
 
+// TODO: mention about locations
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
