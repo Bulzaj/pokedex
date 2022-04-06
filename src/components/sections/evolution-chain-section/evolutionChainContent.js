@@ -36,7 +36,7 @@ const EvolutionChainContent = function (props) {
             </>
           );
 
-          const buttonIcon = chainLink.evolutionDetails ? (
+          const buttonIcon = chainLink?.evolutionDetails ? (
             <BsInfoCircle
               size={120}
               aria-controls="evolution-details"
