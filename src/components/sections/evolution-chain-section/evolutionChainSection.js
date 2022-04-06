@@ -25,13 +25,14 @@ const EvolutionChainSection = function (props) {
   const [showEvolutionInfo, setShowEvolutionInfo] = useState(false);
   const titleRef = useRef();
 
-  const handleFigureClick = function (pokemonName) {
+  const handleCaptionClick = function (pokemonName) {
     if (pokemonName === urlParams.name) return;
     navigate(`/pokemon/${pokemonName}`);
     scrollTop();
   };
 
-  const handleInfoBtnClick = function (chainLink) {
+  const handleInfoClick = function (chainLink) {
+    if (!chainLink.evolutionDetails) return;
     if (chainLink.speciesName === selectedChainLink?.speciesName) return;
     setShowEvolutionInfo(true);
     setSelectedChainLink(chainLink);
@@ -49,8 +50,8 @@ const EvolutionChainSection = function (props) {
       <EvolutionChainContent
         pokemons={pokemons}
         chain={evolutionChain}
-        handleFigureClick={handleFigureClick}
-        handleInfoBtnClick={handleInfoBtnClick}
+        handleCaptionClick={handleCaptionClick}
+        handleInfoClick={handleInfoClick}
         showEvolutionInfo={showEvolutionInfo}
       />
     );
