@@ -1,6 +1,8 @@
 import { Container } from "react-bootstrap";
+import PropsError from "../../errors/propsError";
 
 const Section = function (props) {
+  if (!props.id && !props.title) throw new PropsError();
   const bg = `bg-${props.bg || "light"}`;
   const text = `text-${props.text || "dark"}`;
   return (

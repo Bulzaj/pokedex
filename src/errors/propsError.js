@@ -1,6 +1,7 @@
 class PropsError extends Error {
-  _defaultMessage = "Passed properties does not meet requirements of component";
-  constructor(message = this._defaultMessage) {
+  constructor(
+    message = "Passed properties does not meet requirements of component"
+  ) {
     super(message);
     this.name = "PropsError";
   }
