@@ -10,7 +10,7 @@ import AbilitiesInfoSection from "../../components/sections/abilities-info-secti
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypesSection from "../../components/sections/pokemon-types-section/pokemonTypesSection";
 import DamageRelationsSection from "../../components/sections/damage-relations-section/damageRelationsSection";
-import EvolutionChain from "../../components/evolution-chain/evolutionChain";
+import EvolutionChainSection from "../../components/sections/evolution-chain-section/evolutionChainSection";
 import useTypes from "../../hooks/useTypes";
 import usePokemons from "../../hooks/usePokemons";
 import useEvolutionChain from "../../hooks/useEvolutionChain";
@@ -143,7 +143,7 @@ const Pokemon = function () {
       </Row>
       <Row>
         <Col>
-          <EvolutionChain evolutionChain={chain} />
+          <EvolutionChainSection evolutionChain={chain} />
         </Col>
       </Row>
     </Container>

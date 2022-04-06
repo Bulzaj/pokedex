@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import usePokemons from "../../hooks/usePokemons";
+import usePokemons from "../../../hooks/usePokemons";
 import EvolutionChainTitle from "./evolutionChainTitle";
 import EvolutionChainSpinner from "./evolutionChainSpinner";
 import EvolutionChainContent from "./evolutionChainContent";
 import EvolutionChainCollapse from "./evolutionChainCollapse";
-import { scrollTop } from "../../utils";
+import { scrollTop } from "../../../utils";
 
-const EvolutionChain = function (props) {
+const EvolutionChainSection = function (props) {
   const { evolutionChain } = props;
   const pokemonNames = useMemo(
     () => evolutionChain.map((chainLink) => chainLink.speciesName),
@@ -71,4 +71,4 @@ const EvolutionChain = function (props) {
   );
 };
 
-export default EvolutionChain;
+export default EvolutionChainSection;
