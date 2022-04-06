@@ -8,8 +8,7 @@ import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
 
 // TODO: Add pokemons to favourite
-// TODO: create general fetch hook
-// TODO: refactor add fetch hooks to use general fetch hook
+
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
 // TODO: add global language (and version?) selection feature
@@ -21,9 +20,11 @@ import { useEffect } from "react";
 
 // TODO: create image component with placeholder when loading
 
-// TODO: create separate image button component instead of figures in evolution chain section
-
 // TODO: use sass to create better type colors variants
+
+// TODO: create new section in pokemon page with listed generations where pokemon occurs
+
+// TODO: create moves section
 
 // FIXME: fix pagination bar current page number display
 
