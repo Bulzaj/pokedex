@@ -25,7 +25,6 @@ const SpeciesDescSection = function (props) {
     .map((entry) => entry.version.name);
 
   const onVersionSelect = function (version) {
-    console.log(version);
     setVersion(version);
   };
 
