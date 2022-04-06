@@ -5,7 +5,7 @@ import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 import useAbilities from "../../hooks/useAbilities";
 import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDesc from "../../components/species-desc/speciesDesc";
-import GeneralInfo from "../../components/general-info/generalInfo";
+import GeneralInfoSection from "../../components/sections/general-info-section/generalInfoSection";
 import AbilitiesInfoSection from "../../components/sections/abilities-info-section/abilitiesInfoSection";
 import StatsInfo from "../../components/stats-info/statsInfo";
 import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
@@ -133,7 +133,7 @@ const Pokemon = function () {
         </Col>
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
-          <GeneralInfo info={basicInfo} />
+          <GeneralInfoSection info={basicInfo} />
           <AbilitiesInfoSection
             abilities={abilities}
             actualPokemon={activePokemonName}
