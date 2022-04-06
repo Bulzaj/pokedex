@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from "../../utils";
 import SpeciesDescSection from "../../components/sections/species-desc-section/speciesDescSection";
 import GeneralInfoSection from "../../components/sections/general-info-section/generalInfoSection";
 import AbilitiesInfoSection from "../../components/sections/abilities-info-section/abilitiesInfoSection";
-import StatsInfo from "../../components/stats-info/statsInfo";
+import StatsInfoSection from "../../components/sections/stats-info-section/statsInfoSection";
 import PokemonTypesSection from "../../components/sections/pokemon-types-section/pokemonTypesSection";
 import DamageRelationsSection from "../../components/sections/damage-relations-section/damageRelationsSection";
 import EvolutionChainSection from "../../components/sections/evolution-chain-section/evolutionChainSection";
@@ -128,7 +128,7 @@ const Pokemon = function () {
       <Row xs={1} lg={2}>
         <Col>
           <PreviewImageSection artwork={artwork} />
-          <StatsInfo stats={stats} />
+          <StatsInfoSection stats={stats} />
           <PokemonTypesSection types={types} />
         </Col>
         <Col>

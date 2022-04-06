@@ -1,10 +1,14 @@
-import { Container, Row, Col, ProgressBar } from "react-bootstrap";
+import { Row, Col, ProgressBar } from "react-bootstrap";
+import Section from "../../section/section";
 
-const StatsInfo = function (props) {
+const StatsInfoSection = function (props) {
   return (
-    <Container fluid className="bg-success text-light rounded p-2">
-      <h3 className="display-3">Statistics</h3>
-      <p>A list of base stat values for this Pokémon.</p>
+    <Section
+      title="Statistics"
+      desc="A list of base stat values for this Pokémon."
+      bg="success"
+      text="light"
+    >
       {props?.stats.map((stat) => (
         <Row key={stat.stat.name}>
           <Col sm={4}>
@@ -20,8 +24,8 @@ const StatsInfo = function (props) {
           </Col>
         </Row>
       ))}
-    </Container>
+    </Section>
   );
 };
 
-export default StatsInfo;
+export default StatsInfoSection;
