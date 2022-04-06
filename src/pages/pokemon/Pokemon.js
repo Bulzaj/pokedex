@@ -8,7 +8,7 @@ import SpeciesDesc from "../../components/species-desc/speciesDesc";
 import GeneralInfoSection from "../../components/sections/general-info-section/generalInfoSection";
 import AbilitiesInfoSection from "../../components/sections/abilities-info-section/abilitiesInfoSection";
 import StatsInfo from "../../components/stats-info/statsInfo";
-import PokemonTypes from "../../components/pokemon-types/PokemonTypes";
+import PokemonTypesSection from "../../components/sections/pokemon-types-section/pokemonTypesSection";
 import DamageRelationsSection from "../../components/sections/damage-relations-section/damageRelationsSection";
 import EvolutionChain from "../../components/evolution-chain/evolutionChain";
 import useTypes from "../../hooks/useTypes";
@@ -129,7 +129,7 @@ const Pokemon = function () {
         <Col>
           <PreviewImageSection artwork={artwork} />
           <StatsInfo stats={stats} />
-          <PokemonTypes types={types} />
+          <PokemonTypesSection types={types} />
         </Col>
         <Col>
           <SpeciesDesc flavorTextEntries={flavorTextEntries} />
