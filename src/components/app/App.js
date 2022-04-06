@@ -14,7 +14,7 @@ import { useEffect } from "react";
 // TODO: add global language (and version?) selection feature
 // TODO: create hook for filtering languages and versions (from api response)
 
-// TODO: add pokemon comparing feature
+// TODO: add pokemon comparsion feature
 
 // TODO: insert link to megaform if has one
 
