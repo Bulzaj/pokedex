@@ -20,8 +20,3 @@
   --color-unknown: #0d5212;
   --color-shadow: #242624;
 }
-
-.card {
-  height: 470px;
-  min-width: 290px;
-}

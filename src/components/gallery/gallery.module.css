@@ -1,0 +1,15 @@
+.gridContainer {
+    display: grid;
+    gap: 2rem;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: 240px;
+}
+
+.gridItemTall {
+    grid-row: span 2 / auto;
+}
+
+.gridItemWide {
+    grid-column: span 2 / auto;
+}

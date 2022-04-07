@@ -3,7 +3,6 @@ import { capitalizeFirstLetter, generateGradient } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import "./pokemonCard.css";
 
-// TODO: change content of body
 const PokemonCard = function (props) {
   const { pokemon } = props;
   const image = pokemon.sprites.other.dream_world.front_default;
@@ -16,15 +15,15 @@ const PokemonCard = function (props) {
   };
 
   return (
-    <Card className="card shadow interactive" onClick={handleClick}>
+    <Card className="shadow interactive" onClick={handleClick}>
       <Card.Img
         variant="top"
         src={image}
         alt="pokomon-img"
-        style={{
-          height: "60%",
-          objectFit: "fill",
-        }}
+        // style={{
+        //   height: "60%",
+        //   objectFit: "fill",
+        // }}
       />
       <Card.Body>
         <Card.Title>{capitalizeFirstLetter(pokemon.name)}</Card.Title>
