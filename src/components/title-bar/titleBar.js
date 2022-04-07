@@ -3,6 +3,7 @@ import usePokemons from "../../hooks/usePokemons";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import { capitalizeFirstLetter } from "../../utils";
+import TitleBarButton from "./titleBarButton";
 
 const TitleBar = function (props) {
   const { currentPokemonName, currentPokemonId } = props;
@@ -10,9 +11,23 @@ const TitleBar = function (props) {
   const [prev, setPrev] = useState();
   const { pokemons, fetchPokemons } = usePokemons();
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (!currentPokemonId) return;
+    fetchPokemons([currentPokemonId - 1, currentPokemonId + 1]);
 
-  if (!currentPokemonName || !currentPokemonId) return <CustomSpinner />;
+    if (!pokemons) return;
+    setNext(pokemons?.[1]);
+    setPrev(pokemons?.[0]);
+  }, [currentPokemonId, fetchPokemons]);
+
+  useEffect(() => {
+    if (!pokemons) return;
+    pokemons[1].name && setNext(pokemons[1]);
+    pokemons[0].name && setPrev(pokemons[0]);
+  }, [pokemons]);
+
+  if (!currentPokemonName || !currentPokemonId || !pokemons)
+    return <CustomSpinner />;
 
   return (
     <Container>
@@ -30,18 +45,14 @@ const TitleBar = function (props) {
           xs={6}
           lg={{ span: 3, order: 1 }}
         >
-          <Button size="lg" variant="outline-dark">
-            Prev
-          </Button>
+          <TitleBarButton pokemonName={prev?.name} pokemonId={prev?.id} />
         </Col>
         <Col
           className="d-flex align-items-center justify-content-center"
           xs={6}
           lg={{ span: 3, order: 3 }}
         >
-          <Button size="lg" variant="outline-dark">
-            Next
-          </Button>
+          <TitleBarButton pokemonName={next?.name} pokemonId={next?.id} />
         </Col>
       </Row>
     </Container>
