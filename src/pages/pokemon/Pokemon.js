@@ -120,10 +120,6 @@ const Pokemon = function () {
       <Row className="justify-content-center mb-2">
         <Col>
           <TitleBar currentPokemonName={params.name} currentPokemonId={id} />
-          {/* <h1 className="display-1 text-center">
-            {capitalizeFirstLetter(pokemonDetails?.name) + " "}
-            <strong className="text-muted">#{`${id}`.padStart(3, 0)}</strong>
-          </h1> */}
         </Col>
       </Row>
       <Row xs={1} lg={2}>
