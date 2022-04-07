@@ -17,7 +17,6 @@ import useEvolutionChain from "../../hooks/useEvolutionChain";
 import PreviewImageSection from "../../components/sections/preview-image-section/previewImageSection";
 import TitleBar from "../../components/title-bar/titleBar";
 
-// TODO: add next and previous button
 const Pokemon = function () {
   const params = useParams();
   const activePokemonName = useMemo(() => [params.name], [params.name]);
