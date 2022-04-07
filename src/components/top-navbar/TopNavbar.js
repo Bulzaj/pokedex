@@ -8,7 +8,13 @@ const TopNavbar = function (props) {
 
   return (
     <>
-      <Navbar sticky="top" expand="md" bg="dark" variant="dark">
+      <Navbar
+        className="mb-3"
+        sticky="top"
+        expand="md"
+        bg="dark"
+        variant="dark"
+      >
         <Container>
           <Nav>
             <Nav.Link href="/">

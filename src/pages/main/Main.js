@@ -3,8 +3,9 @@ import PaginationBar from "../../components/pagination-bar/PaginationBar";
 import { scrollTop } from "../../utils";
 import { PER_PAGE_LIMIT, TOTAL_RECORDS } from "../../consts";
 import usePokemons from "../../hooks/usePokemons";
-import { Container, Spinner } from "react-bootstrap";
 import { useEffect } from "react";
+import CustomSpinner from "../../components/custom-spinner/customSpinner";
+import PokemonGallery from "../../components/pokemon-gallery/pokemonGallery";
 
 // TODO: Improve that ugly grid gallery component
 const Main = function () {
@@ -17,15 +18,7 @@ const Main = function () {
     });
   }, [fetchPokemons]);
 
-  if (!pokemons)
-    return (
-      <Container
-        fluid
-        className="vh-100 d-flex justify-content-center align-items-center"
-      >
-        <Spinner size="lg" animation="border" role="status" />
-      </Container>
-    );
+  if (!pokemons) return <CustomSpinner />;
 
   const onPageChange = function (selectedPage) {
     fetchPokemons(null, { offset: PER_PAGE_LIMIT * (selectedPage - 1) });
@@ -34,7 +27,7 @@ const Main = function () {
 
   return (
     <>
-      <PokemonList pokemons={pokemons} />
+      <PokemonGallery pokemonList={pokemons} />
       {pokemons.length !== 0 ? (
         <PaginationBar
           onPageChange={onPageChange}
