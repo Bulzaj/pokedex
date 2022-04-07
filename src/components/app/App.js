@@ -22,15 +22,15 @@ import { useEffect } from "react";
 
 // TODO: use sass to create better type colors variants
 
-// TODO: create new section in pokemon page with listed generations where pokemon occurs
-
-// TODO: create moves section
-
 // FIXME: fix pagination bar current page number display
 
 // FIXME: buton size on mobile
 
 // TODO: mention about locations
+
+// TODO: mention about moves
+
+// TODO: create new section in pokemon page with listed generations where pokemon occurs
 
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
