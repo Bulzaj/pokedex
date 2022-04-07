@@ -3,8 +3,6 @@ import classes from "./gallery.module.css";
 const GalleryItems = function (props) {
   const { items, itemWrapper, itemKey, spanWidth, spanHeight } = props;
 
-  if (!items || !itemWrapper) return null;
-
   return items.map((item) => (
     <GridItem
       key={itemKey(item)}

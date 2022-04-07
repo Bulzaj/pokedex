@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from "react";
-import { Image as Img } from "react-bootstrap";
 import usePokemons from "../../hooks/usePokemons";
 import Gallery from "../gallery/gallery";
 import getImageDimmensions from "../../getImgDimmensions";
+import GalleryImage from "../gallery-image/galleryImage";
 
 const PokemonGallery = function (props) {
   const { pokemons, fetchPokemons } = usePokemons();
@@ -16,10 +16,10 @@ const PokemonGallery = function (props) {
   const itemWrapper = (item) => {
     const imageSrc = item.sprites.other.dream_world.front_default;
     return (
-      <Img
-        className="bg-dark"
-        style={{ width: "100%", height: "100%" }}
+      <GalleryImage
         src={imageSrc}
+        pokemonName={item.name}
+        pokemonId={item.id}
       />
     );
   };
@@ -27,7 +27,6 @@ const PokemonGallery = function (props) {
   const spanWidth = function (item) {
     const src = item.sprites.other.dream_world.front_default;
     const dimm = getImageDimmensions(src);
-    // if (dimm.w >= 400) return 2;
     if (dimm.w / dimm.h > 1.2) return 2;
     return 1;
   };
@@ -35,7 +34,6 @@ const PokemonGallery = function (props) {
   const spanHeight = function (item) {
     const src = item.sprites.other.dream_world.front_default;
     const dimm = getImageDimmensions(src);
-    // if (dimm.h >= 400) return 2;
     if (dimm.h / dimm.w > 1.2) return 2;
     return 1;
   };
