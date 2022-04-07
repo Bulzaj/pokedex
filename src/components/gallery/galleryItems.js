@@ -1,7 +1,7 @@
 import classes from "./gallery.module.css";
 
 const GalleryItems = function (props) {
-  const { items, itemWrapper, itemKey, isTall, isWide } = props;
+  const { items, itemWrapper, itemKey, spanWidth, spanHeight } = props;
 
   if (!items || !itemWrapper) return null;
 
@@ -9,19 +9,22 @@ const GalleryItems = function (props) {
     <GridItem
       key={itemKey(item)}
       itemWrapper={itemWrapper(item)}
-      isTall={isTall(item)}
-      isWide={isWide(item)}
+      spanWidth={spanWidth(item)}
+      spanHeight={spanHeight(item)}
     />
   ));
 };
 
 const GridItem = function (props) {
-  const { itemWrapper, isTall, isWide } = props;
+  const { itemWrapper, spanWidth, spanHeight } = props;
 
-  const tall = isTall && classes.gridItemTall;
-  const wide = isWide && classes.gridItemWide;
-
-  return <div className={(tall, wide)}>{itemWrapper}</div>;
+  return (
+    <div
+      className={`${classes[`w-${spanWidth}`]} ${classes[`h-${spanHeight}`]}`}
+    >
+      {itemWrapper}
+    </div>
+  );
 };
 
 export default GalleryItems;

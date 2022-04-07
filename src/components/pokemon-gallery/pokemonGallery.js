@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from "react";
+import { Image as Img } from "react-bootstrap";
 import usePokemons from "../../hooks/usePokemons";
 import Gallery from "../gallery/gallery";
-import PokemonCard from "../pokemon-card/PokemonCard";
+import getImageDimmensions from "../../getImgDimmensions";
 
 const PokemonGallery = function (props) {
   const { pokemons, fetchPokemons } = usePokemons();
@@ -13,23 +14,30 @@ const PokemonGallery = function (props) {
   );
 
   const itemWrapper = (item) => {
-    return <PokemonCard pokemon={item} />;
+    const imageSrc = item.sprites.other.dream_world.front_default;
+    return (
+      <Img
+        className="bg-dark"
+        style={{ width: "100%", height: "100%" }}
+        src={imageSrc}
+      />
+    );
   };
 
-  const isTall = function (item) {
-    const imageSrc = item.sprites.other.dream_world.front_default;
-    const img = new Image();
-    img.src = imageSrc;
-    const h = img.height;
-    if (h >= 300) return true;
+  const spanWidth = function (item) {
+    const src = item.sprites.other.dream_world.front_default;
+    const dimm = getImageDimmensions(src);
+    // if (dimm.w >= 400) return 2;
+    if (dimm.w / dimm.h > 1.2) return 2;
+    return 1;
   };
 
-  const isWide = function (item) {
-    const imageSrc = item.sprites.other.dream_world.front_default;
-    const img = new Image();
-    img.src = imageSrc;
-    const w = img.width;
-    if (w >= 300) return true;
+  const spanHeight = function (item) {
+    const src = item.sprites.other.dream_world.front_default;
+    const dimm = getImageDimmensions(src);
+    // if (dimm.h >= 400) return 2;
+    if (dimm.h / dimm.w > 1.2) return 2;
+    return 1;
   };
 
   const itemKey = (item) => item.name;
@@ -43,8 +51,8 @@ const PokemonGallery = function (props) {
       items={pokemons}
       itemKey={itemKey}
       itemWrapper={itemWrapper}
-      isTall={isTall}
-      isWide={isWide}
+      spanWidth={spanWidth}
+      spanHeight={spanHeight}
     />
   );
 };
