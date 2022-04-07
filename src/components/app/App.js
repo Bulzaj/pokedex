@@ -6,8 +6,10 @@ import Pokemon from "../../pages/pokemon/Pokemon";
 import usePokemons from "../../hooks/usePokemons";
 import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
+import Favourites from "../../pages/favourites/favourites";
 
 // TODO: Add pokemons to favourite
+// TODO: Create badge next to link with favourites count
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
@@ -48,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/pokemon/:name" element={<Pokemon />} />
+          <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </Container>
     </div>
