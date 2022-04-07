@@ -25,19 +25,17 @@ const Main = function () {
     scrollTop();
   };
 
-  return <PokemonGallery pokemonList={pokemons} />;
-
-  // return (
-  //   <>
-  //     <PokemonList pokemons={pokemons} />
-  //     {pokemons.length !== 0 ? (
-  //       <PaginationBar
-  //         onPageChange={onPageChange}
-  //         lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
-  //       />
-  //     ) : null}
-  //   </>
-  // );
+  return (
+    <>
+      <PokemonGallery pokemonList={pokemons} />
+      {pokemons.length !== 0 ? (
+        <PaginationBar
+          onPageChange={onPageChange}
+          lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default Main;

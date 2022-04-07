@@ -2,14 +2,16 @@ import { Image, Button } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import classes from "./galleryImage.module.css";
 import { capitalizeFirstLetter } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 const GalleryImage = function (props) {
   const { src, pokemonName, pokemonId } = props;
+  const navigate = useNavigate();
 
   if (!src) <CustomSpinner />;
 
   const handleContainerClick = function () {
-    console.log("container clicked");
+    navigate(`/pokemon/${pokemonName}`);
   };
 
   const handleFavouritesClick = function (e) {
