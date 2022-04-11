@@ -1,4 +1,4 @@
-import classes from "./gallery.module.css";
+import GridItem from "./gridItem";
 
 const GalleryItems = function (props) {
   const { items, itemWrapper, itemKey, spanWidth, spanHeight } = props;
@@ -7,22 +7,10 @@ const GalleryItems = function (props) {
     <GridItem
       key={itemKey(item)}
       itemWrapper={itemWrapper(item)}
-      spanWidth={spanWidth(item)}
-      spanHeight={spanHeight(item)}
+      spanWidth={spanWidth && spanWidth(item)}
+      spanHeight={spanHeight && spanHeight(item)}
     />
   ));
-};
-
-const GridItem = function (props) {
-  const { itemWrapper, spanWidth, spanHeight } = props;
-
-  return (
-    <div
-      className={`${classes[`w-${spanWidth}`]} ${classes[`h-${spanHeight}`]}`}
-    >
-      {itemWrapper}
-    </div>
-  );
 };
 
 export default GalleryItems;

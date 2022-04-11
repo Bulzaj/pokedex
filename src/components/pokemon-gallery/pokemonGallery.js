@@ -24,20 +24,6 @@ const PokemonGallery = function (props) {
     );
   };
 
-  const spanWidth = function (item) {
-    const src = item.sprites.other.dream_world.front_default;
-    const dimm = getImageDimmensions(src);
-    if (dimm.w / dimm.h > 1.2) return 2;
-    return 1;
-  };
-
-  const spanHeight = function (item) {
-    const src = item.sprites.other.dream_world.front_default;
-    const dimm = getImageDimmensions(src);
-    if (dimm.h / dimm.w > 1.2) return 2;
-    return 1;
-  };
-
   const itemKey = (item) => item.name;
 
   useEffect(() => {
@@ -45,13 +31,7 @@ const PokemonGallery = function (props) {
   }, [fetchPokemons, pokemonNames]);
 
   return (
-    <Gallery
-      items={pokemons}
-      itemKey={itemKey}
-      itemWrapper={itemWrapper}
-      spanWidth={spanWidth}
-      spanHeight={spanHeight}
-    />
+    <Gallery items={pokemons} itemKey={itemKey} itemWrapper={itemWrapper} />
   );
 };
 
