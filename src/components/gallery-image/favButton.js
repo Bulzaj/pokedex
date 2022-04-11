@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { favouritesContext } from "../../context/favouritesContext";
 
 const FavButton = function (props) {
-  const { pokemonName } = props;
+  const { pokemonName, outline, size } = props;
   const { favourites, add, remove } = useContext(favouritesContext);
   const [added, setAdded] = useState(false);
 
@@ -24,7 +24,8 @@ const FavButton = function (props) {
 
   return (
     <Button
-      variant={btnVariant}
+      size={size}
+      variant={outline ? `outline-${btnVariant}` : btnVariant}
       onClick={(e) => handleFavouritesClick(e, pokemonName)}
     >
       {btnName}

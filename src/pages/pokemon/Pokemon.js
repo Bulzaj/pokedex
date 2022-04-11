@@ -139,9 +139,11 @@ const Pokemon = function () {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <EvolutionChainSection evolutionChain={chain} />
-        </Col>
+        <Container>
+          <Col>
+            <EvolutionChainSection evolutionChain={chain} />
+          </Col>
+        </Container>
       </Row>
     </Container>
   );
