@@ -1,8 +1,9 @@
-import { Image, Button } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import classes from "./galleryImage.module.css";
 import { capitalizeFirstLetter } from "../../utils";
 import { useNavigate } from "react-router-dom";
+import FavButton from "./favButton";
 
 const GalleryImage = function (props) {
   const { src, pokemonName, pokemonId } = props;
@@ -14,11 +15,6 @@ const GalleryImage = function (props) {
     navigate(`/pokemon/${pokemonName}`);
   };
 
-  const handleFavouritesClick = function (e) {
-    e.stopPropagation();
-    console.log("favourites clicked");
-  };
-
   return (
     <div
       onClick={handleContainerClick}
@@ -26,7 +22,7 @@ const GalleryImage = function (props) {
     >
       <div className={classes.controlWrapper}>
         <div className={classes.controlsRowEnd}>
-          <Button onClick={handleFavouritesClick}>Add to favourites</Button>
+          <FavButton pokemonName={pokemonName} />
         </div>
         <div className={classes.controlsRowCenter}>
           <div className={classes.titleConteiner}>
