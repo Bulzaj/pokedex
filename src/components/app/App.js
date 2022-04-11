@@ -13,6 +13,8 @@ import Favourites from "../../pages/favourites/favourites";
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
+// TODO: create wider and taller gallery items;
+
 // TODO: add global language (and version?) selection feature
 // TODO: create hook for filtering languages and versions (from api response)
 
