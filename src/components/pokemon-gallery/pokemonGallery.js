@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from "react";
 import usePokemons from "../../hooks/usePokemons";
 import Gallery from "../gallery/gallery";
-import getImageDimmensions from "../../getImgDimmensions";
 import GalleryImage from "../gallery-image/galleryImage";
 
 const PokemonGallery = function (props) {
