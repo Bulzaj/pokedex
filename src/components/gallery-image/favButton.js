@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import useFavourites from "../../hooks/useFavourites";
+import { favouritesContext } from "../../context/favouritesContext";
 
 const FavButton = function (props) {
   const { pokemonName } = props;
-  const { favourites, add, remove } = useFavourites();
+  const { favourites, add, remove } = useContext(favouritesContext);
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
     if (favourites.includes(pokemonName)) return setAdded(true);
     return setAdded(false);
-  }, [favourites]);
+  }, [favourites, pokemonName]);
 
   const btnName = added ? "Remove from favourites" : "Add to favourites";
 

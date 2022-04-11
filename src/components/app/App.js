@@ -7,6 +7,7 @@ import usePokemons from "../../hooks/usePokemons";
 import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
 import Favourites from "../../pages/favourites/favourites";
+import FavouritesContextProvider from "../../context/favouritesContext";
 
 // TODO: Add pokemons to favourite
 // TODO: Create badge next to link with favourites count
@@ -47,14 +48,16 @@ function App() {
 
   return (
     <div className="App">
-      <TopNavbar pokemonNames={pokemonNames} />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/pokemon/:name" element={<Pokemon />} />
-          <Route path="/favourites" element={<Favourites />} />
-        </Routes>
-      </Container>
+      <FavouritesContextProvider>
+        <TopNavbar pokemonNames={pokemonNames} />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/pokemon/:name" element={<Pokemon />} />
+            <Route path="/favourites" element={<Favourites />} />
+          </Routes>
+        </Container>
+      </FavouritesContextProvider>
     </div>
   );
 }

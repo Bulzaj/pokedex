@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../../assets/logo.png";
+import FavouritesLink from "./favouritesLink";
 import TopNavbarSearchBox from "./topNavbarSearchBox";
 
 // TODO: add random pokemon button
@@ -33,7 +34,7 @@ const TopNavbar = function (props) {
           <Navbar.Toggle aria-controls="responsive-navbar" />
           <Navbar.Collapse id="responsive-navbar">
             <Nav className="me-auto my-2 my-lg-0">
-              <Nav.Link href="/favourites">Favourites</Nav.Link>
+              <FavouritesLink />
             </Nav>
             <TopNavbarSearchBox pokemonNames={pokemonNames} />
           </Navbar.Collapse>
