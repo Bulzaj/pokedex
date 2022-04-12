@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import usePokemons from "../../hooks/usePokemons";
 import Gallery from "../gallery/gallery";
 import GalleryImage from "../gallery-image/galleryImage";
+import CustomSpinner from "../custom-spinner/customSpinner";
 
 const PokemonGallery = function (props) {
   const { pokemons, fetchPokemons } = usePokemons();
@@ -26,8 +27,10 @@ const PokemonGallery = function (props) {
   const itemKey = (item) => item.name;
 
   useEffect(() => {
-    fetchPokemons(pokemonNames);
-  }, [fetchPokemons, pokemonNames]);
+    fetchPokemons(pokemonList);
+  }, [fetchPokemons, pokemonList]);
+
+  if (!pokemons) return <CustomSpinner />;
 
   return (
     <Gallery items={pokemons} itemKey={itemKey} itemWrapper={itemWrapper} />
