@@ -42,6 +42,8 @@ import FavouritesContextProvider from "../../context/favouritesContext";
 
 // TODO: create new section in pokemon page with listed generations where pokemon occurs
 
+// TODO: transform util functions to services
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
