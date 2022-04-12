@@ -7,11 +7,17 @@ import usePokemons from "../../hooks/usePokemons";
 import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
 import Favourites from "../../pages/favourites/favourites";
-
-// TODO: Add pokemons to favourite
-// TODO: Create badge next to link with favourites count
+import FavouritesContextProvider from "../../context/favouritesContext";
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
+
+// -------------------First release--------------------
+
+// TODO: typo - in the plural, pokemon is still pokemon :(
+
+// TODO: create collection component that manage how to display data (eg. gallery, cards or list)
+
+// TODO: create wider and taller gallery items;
 
 // TODO: add global language (and version?) selection feature
 // TODO: create hook for filtering languages and versions (from api response)
@@ -34,6 +40,8 @@ import Favourites from "../../pages/favourites/favourites";
 
 // TODO: create new section in pokemon page with listed generations where pokemon occurs
 
+// TODO: transform util functions to services
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
@@ -45,14 +53,16 @@ function App() {
 
   return (
     <div className="App">
-      <TopNavbar pokemonNames={pokemonNames} />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/pokemon/:name" element={<Pokemon />} />
-          <Route path="/favourites" element={<Favourites />} />
-        </Routes>
-      </Container>
+      <FavouritesContextProvider>
+        <TopNavbar pokemonNames={pokemonNames} />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/pokemon/:name" element={<Pokemon />} />
+            <Route path="/favourites" element={<Favourites />} />
+          </Routes>
+        </Container>
+      </FavouritesContextProvider>
     </div>
   );
 }

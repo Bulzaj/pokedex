@@ -19,7 +19,7 @@ import TitleBar from "../../components/title-bar/titleBar";
 
 const Pokemon = function () {
   const params = useParams();
-  const activePokemonName = useMemo(() => [params.name], [params.name]);
+  const activePokemonName = useMemo(() => params.name, [params.name]);
 
   // Basic details
   const { pokemons, fetchPokemons } = usePokemons();
@@ -30,6 +30,7 @@ const Pokemon = function () {
   );
 
   const pokemonDetails = pokemons?.[0];
+  const name = pokemonDetails?.name;
   const id = pokemonDetails?.id;
   const speciesName = pokemonDetails?.species.name;
   const weight = pokemonDetails?.weight;
@@ -119,7 +120,7 @@ const Pokemon = function () {
     <Container className="mt-3">
       <Row className="justify-content-center mb-2">
         <Col>
-          <TitleBar currentPokemonName={params.name} currentPokemonId={id} />
+          <TitleBar currentPokemonName={name} currentPokemonId={id} />
         </Col>
       </Row>
       <Row xs={1} lg={2}>
@@ -139,9 +140,11 @@ const Pokemon = function () {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <EvolutionChainSection evolutionChain={chain} />
-        </Col>
+        <Container>
+          <Col>
+            <EvolutionChainSection evolutionChain={chain} />
+          </Col>
+        </Container>
       </Row>
     </Container>
   );

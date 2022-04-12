@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import usePokemons from "../../hooks/usePokemons";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import { capitalizeFirstLetter } from "../../utils";
 import TitleBarButton from "./titleBarButton";
+import FavButton from "../fav-Button/favButton";
 
 const TitleBar = function (props) {
   const { currentPokemonName, currentPokemonId } = props;
@@ -54,6 +55,9 @@ const TitleBar = function (props) {
         >
           <TitleBarButton pokemonName={next?.name} pokemonId={next?.id} />
         </Col>
+      </Row>
+      <Row className="mt-3 mb-2">
+        <FavButton size="lg" outline pokemonName={currentPokemonName} />
       </Row>
     </Container>
   );

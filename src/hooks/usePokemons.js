@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import fetch from "../fetch";
+import getPokemonIds from "../getPokemonIds";
 
 const usePokemons = function () {
   const [pokemons, setPokemons] = useState();
@@ -8,11 +9,12 @@ const usePokemons = function () {
     setPokemons(data);
   };
 
-  const fetchPokemons = useCallback(function (pokemonNames, queryStrings) {
+  const fetchPokemons = useCallback(function (pokemonIds, queryStrings) {
+    const validNames = getPokemonIds(pokemonIds);
     fetch(
       {
         endpoint: "pokemon",
-        ids: pokemonNames,
+        ids: validNames,
         queryStrings,
       },
       applyData
