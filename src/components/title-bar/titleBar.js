@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import usePokemons from "../../hooks/usePokemons";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import { capitalizeFirstLetter } from "../../utils";
 import TitleBarButton from "./titleBarButton";
-import { favouritesContext } from "../../context/favouritesContext";
 import FavButton from "../gallery-image/favButton";
 
 const TitleBar = function (props) {
