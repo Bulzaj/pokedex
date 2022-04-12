@@ -13,6 +13,8 @@ import FavouritesContextProvider from "../../context/favouritesContext";
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
+// TODO: typo - in the plural, pokemon is still pokemon :(
+
 // -------------------First release--------------------
 
 // TODO: create collection component that manage how to display data (eg. gallery, cards or list)
