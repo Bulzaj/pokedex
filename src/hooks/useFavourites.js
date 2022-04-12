@@ -21,7 +21,12 @@ const useFavourites = function () {
     setFavourites(newArray);
   };
 
-  return { favourites, add, remove };
+  const clear = function () {
+    if (favourites.length === 0) return;
+    setFavourites([]);
+  };
+
+  return { favourites, add, remove, clear };
 };
 
 const getFavourites = function () {
