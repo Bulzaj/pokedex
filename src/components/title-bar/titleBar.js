@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import CustomSpinner from "../custom-spinner/customSpinner";
 import { capitalizeFirstLetter } from "../../utils";
 import TitleBarButton from "./titleBarButton";
-import FavButton from "../gallery-image/favButton";
+import FavButton from "../fav-Button/favButton";
 
 const TitleBar = function (props) {
   const { currentPokemonName, currentPokemonId } = props;

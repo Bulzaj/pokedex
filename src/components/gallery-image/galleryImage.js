@@ -3,7 +3,7 @@ import CustomSpinner from "../custom-spinner/customSpinner";
 import classes from "./galleryImage.module.css";
 import { capitalizeFirstLetter } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import FavButton from "./favButton";
+import FavButton from "../fav-Button/favButton";
 
 const GalleryImage = function (props) {
   const { src, pokemonName, pokemonId } = props;
