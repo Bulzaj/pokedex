@@ -10,9 +10,10 @@ import Favourites from "../../pages/favourites/favourites";
 import FavouritesContextProvider from "../../context/favouritesContext";
 
 // TODO: Add pokemons to favourite
-// TODO: Create badge next to link with favourites count
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
+
+// -------------------First release--------------------
 
 // TODO: create collection component that manage how to display data (eg. gallery, cards or list)
 
