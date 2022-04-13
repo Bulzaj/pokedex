@@ -4,7 +4,7 @@ import { useContext } from "react";
 import PokemonGallery from "../../components/pokemon-gallery/pokemonGallery";
 import LocalStorageAlert from "../../components/local-storage-alert/localStorageAlert";
 import ClearButton from "../../components/clear-button/clearButton";
-import NoFavAlert from "../../no-fav-alert/noFavAlert";
+import NoFavAlert from "../../components/no-fav-alert/noFavAlert";
 
 const Favourites = function () {
   const { favourites } = useContext(favouritesContext);
