@@ -1,0 +1,43 @@
+.gradientText {
+  background: #e60000; /* fallback for old browsers */
+  /* background: -webkit-linear-gradient(to right, #ff0000, #eee ,#0055ff); Chrome 10-25, Safari 5.1-6 */
+  /* background: linear-gradient(to right, #e60000, #eee ,#0550e6); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, var(--bs-red), var(--bs-purple), var(--bs-blue));
+  background: linear-gradient(to right, var(--bs-red), var(--bs-purple), var(--bs-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 1;
+}
+
+.textContainer {
+  box-sizing: border-box;
+  padding: .3rem;
+  width: 100%;
+  background-color: var(--bs-dark);
+  opacity: .9;
+  border-radius: 25px;
+}
+
+.separator {
+  display: block;
+  margin: 1.5rem auto;
+  width: 80%;
+  height: .2rem;
+  background: -webkit-linear-gradient(to right, var(--bs-red), var(--bs-purple), var(--bs-blue));
+  background: linear-gradient(to right, var(--bs-red), var(--bs-purple), var(--bs-blue));
+}
+
+@media screen and (min-width: 768px) {
+  .textContainer {
+    width: 80%;
+    padding: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .textContainer {
+    width: 60%;
+    padding: 1.5rem;
+  }
+}
