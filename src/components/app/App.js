@@ -1,13 +1,14 @@
 import { Container } from "react-bootstrap";
 import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
-import Main from "../../pages/main/Main";
 import Pokemon from "../../pages/pokemon/Pokemon";
 import usePokemons from "../../hooks/usePokemons";
 import { TOTAL_RECORDS } from "../../consts";
 import { useEffect } from "react";
 import Favourites from "../../pages/favourites/favourites";
 import FavouritesContextProvider from "../../context/favouritesContext";
+import PokemonList from "../../pages/pokemon-list/pokemonList";
+import Landing from "../../pages/landing/landing";
 
 // TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
@@ -57,7 +58,8 @@ function App() {
         <TopNavbar pokemonNames={pokemonNames} />
         <Container>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/pokemon-list" element={<PokemonList />} />
             <Route path="/pokemon/:name" element={<Pokemon />} />
             <Route path="/favourites" element={<Favourites />} />
           </Routes>

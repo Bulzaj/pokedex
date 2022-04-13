@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import CustomSpinner from "../../components/custom-spinner/customSpinner";
 import PokemonGallery from "../../components/pokemon-gallery/pokemonGallery";
 
-const Main = function () {
+const PokemonList = function () {
   const { pokemons, fetchPokemons } = usePokemons();
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const Main = function () {
   );
 };
 
-export default Main;
+export default PokemonList;
