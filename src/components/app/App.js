@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import TopNavbar from "../top-navbar/TopNavbar";
 import { Route, Routes } from "react-router-dom";
 import Pokemon from "../../pages/pokemon/Pokemon";
@@ -9,8 +8,6 @@ import Favourites from "../../pages/favourites/favourites";
 import FavouritesContextProvider from "../../context/favouritesContext";
 import PokemonList from "../../pages/pokemon-list/pokemonList";
 import Landing from "../../pages/landing/landing";
-
-// TODO: take content from pokeapi descriptions and create new main page (move pokemon list to new page)
 
 // -------------------First release--------------------
 
@@ -43,6 +40,10 @@ import Landing from "../../pages/landing/landing";
 
 // TODO: transform util functions to services
 
+// TODO: create photo gallery with starsalts images
+
+// TODO: expand landing page (use context from pokeapi)
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
@@ -56,14 +57,12 @@ function App() {
     <div className="App">
       <FavouritesContextProvider>
         <TopNavbar pokemonNames={pokemonNames} />
-        <Container>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/pokemon-list" element={<PokemonList />} />
-            <Route path="/pokemon/:name" element={<Pokemon />} />
-            <Route path="/favourites" element={<Favourites />} />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/pokemon-list" element={<PokemonList />} />
+          <Route path="/pokemon/:name" element={<Pokemon />} />
+          <Route path="/favourites" element={<Favourites />} />
+        </Routes>
       </FavouritesContextProvider>
     </div>
   );
