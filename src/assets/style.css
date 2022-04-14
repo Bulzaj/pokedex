@@ -1,0 +1,13 @@
+.interactive {
+  transform: translateY(5px);
+  transition: transform 0.8s;
+}
+
+.interactive:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+.hover-info:hover {
+  color: var(--bs-info);
+}

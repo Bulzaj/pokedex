@@ -1,0 +1,30 @@
+.buttonContainer {
+    position: relative;
+}
+
+.buttonIcon {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .3s;
+    transition-delay: .2s;
+    
+}
+
+.buttonCaption {
+    cursor: pointer;
+}
+
+.buttonContainer:hover > .buttonImage {
+    opacity: .3;
+    transition: opacity .4s ease;
+}
+
+.buttonContainer:hover > .buttonIcon {
+    visibility: visible;
+    top: 50%;
+    left: 50%;
+}
+
