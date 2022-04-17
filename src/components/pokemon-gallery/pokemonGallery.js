@@ -1,17 +1,9 @@
-import { useEffect, useMemo } from "react";
-import usePokemons from "../../hooks/usePokemons";
 import Gallery from "../gallery/gallery";
 import GalleryImage from "../gallery-image/galleryImage";
 import CustomSpinner from "../custom-spinner/customSpinner";
 
 const PokemonGallery = function (props) {
-  const { pokemons, fetchPokemons } = usePokemons();
-  const { pokemonList } = props;
-
-  const pokemonNames = useMemo(
-    () => pokemonList?.map((pokemon) => pokemon.name),
-    [pokemonList]
-  );
+  const { pokemonCollection } = props;
 
   const itemWrapper = (item) => {
     const imageSrc = item.sprites.other.dream_world.front_default;
@@ -26,14 +18,16 @@ const PokemonGallery = function (props) {
 
   const itemKey = (item) => item.name;
 
-  useEffect(() => {
-    fetchPokemons(pokemonList);
-  }, [fetchPokemons, pokemonList]);
+  console.log(pokemonCollection);
 
-  if (!pokemons) return <CustomSpinner />;
+  if (!pokemonCollection) return <CustomSpinner />;
 
   return (
-    <Gallery items={pokemons} itemKey={itemKey} itemWrapper={itemWrapper} />
+    <Gallery
+      items={pokemonCollection}
+      itemKey={itemKey}
+      itemWrapper={itemWrapper}
+    />
   );
 };
 
