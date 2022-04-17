@@ -5,6 +5,7 @@ import usePokemons from "../../hooks/usePokemons";
 import { useEffect } from "react";
 import CustomSpinner from "../../components/custom-spinner/customSpinner";
 import PokemonGallery from "../../components/pokemon-gallery/pokemonGallery";
+import Collection from "../../components/collection/collection";
 
 const PokemonList = function () {
   const { pokemons, fetchPokemons } = usePokemons();
@@ -23,17 +24,19 @@ const PokemonList = function () {
     scrollTop();
   };
 
-  return (
-    <>
-      <PokemonGallery pokemonList={pokemons} />
-      {pokemons.length !== 0 ? (
-        <PaginationBar
-          onPageChange={onPageChange}
-          lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
-        />
-      ) : null}
-    </>
-  );
+  // return (
+  //   <>
+  //     <PokemonGallery pokemonList={pokemons} />
+  //     {pokemons.length !== 0 ? (
+  //       <PaginationBar
+  //         onPageChange={onPageChange}
+  //         lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
+  //       />
+  //     ) : null}
+  //   </>
+  // );
+
+  return <Collection pokemonList={pokemons} />;
 };
 
 export default PokemonList;
