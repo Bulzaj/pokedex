@@ -18,8 +18,6 @@ const PokemonGallery = function (props) {
 
   const itemKey = (item) => item.name;
 
-  console.log(pokemonCollection);
-
   if (!pokemonCollection) return <CustomSpinner />;
 
   return (
