@@ -5,6 +5,7 @@ import PokemonCollectionError from "../../errors/pokemonCollectionError";
 const renderCollection = function (collectionName, pokemonCollection) {
   if (collectionName === COLLECTION_TYPES[0])
     return <PokemonGallery pokemonCollection={pokemonCollection} />;
+  if (collectionName === COLLECTION_TYPES[1]) return;
   throw new PokemonCollectionError(
     `Collection type: ${collectionName} does not exists`
   );
