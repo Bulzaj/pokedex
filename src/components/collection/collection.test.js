@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import PokemonGallery from "../pokemon-gallery/pokemonGallery";
 import CollectionPicker from "./collectionPicker";
 import getCollectionTypeItem from "./getCollectionTypeItem";
+import renderCollection from "./renderCollection";
 
 describe("Collection picker component", () => {
   test('renders "Gallery" title', () => {
@@ -38,5 +40,20 @@ describe("Get collection type item function", () => {
     render(result);
     const el = screen.getByText("Cards");
     expect(el).toBeInTheDocument();
+  });
+});
+
+describe("Render collection function", () => {
+  test('returns "Pokemon gallery" component', () => {
+    const result = renderCollection("gallery");
+    expect(result).toEqual(<PokemonGallery />);
+  });
+  test('returns "Pokemon list" component', () => {
+    const result = renderCollection("list");
+    expect(result).toEqual(<PokemonList />);
+  });
+  test('returns "Pokemon gallery" component', () => {
+    const result = renderCollection("cards");
+    expect(result).toEqual(<PokemonCards />);
   });
 });
