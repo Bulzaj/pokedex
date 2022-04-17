@@ -1,33 +1,28 @@
-import { useEffect, useMemo } from "react";
-import { Row, Col } from "react-bootstrap";
-import PokemonCard from "../pokemon-card/PokemonCard";
-import usePokemons from "../../hooks/usePokemons";
+import { capitalizeFirstLetter } from "../../utils";
+import CustomSpinner from "../custom-spinner/customSpinner";
+import ImageListItem from "../image-list-item/imageListItem";
+import List from "../list/list";
 
 const PokemonList = function (props) {
-  const pokemonNames = useMemo(
-    () => props.pokemons.map((pokemon) => pokemon.name),
-    [props.pokemons]
+  const { pokemonCollection } = props;
+
+  if (!pokemonCollection) return <CustomSpinner />;
+
+  const itemWrapper = function (item) {
+    const imgSrc = item.sprites.other.dream_world.front_default;
+    const title = capitalizeFirstLetter(item.name);
+    return <ImageListItem imgSrc={imgSrc} title={title} />;
+  };
+
+  const itemKey = (item) => item.name;
+
+  return (
+    <List
+      items={pokemonCollection}
+      itemKey={itemKey}
+      itemWrapper={itemWrapper}
+    />
   );
-  const { pokemons, fetchPokemons } = usePokemons();
-
-  useEffect(
-    () => pokemonNames && fetchPokemons(pokemonNames),
-    [fetchPokemons, pokemonNames]
-  );
-
-  if (pokemons) {
-    return (
-      <Row className="d-flex justify-content-center g-3">
-        {pokemons.map((pokemon) => (
-          <Col md lg="auto" key={pokemon.name}>
-            <PokemonCard pokemon={pokemon} />
-          </Col>
-        ))}
-      </Row>
-    );
-  }
-
-  return <></>;
 };
 
 export default PokemonList;
