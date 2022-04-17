@@ -9,8 +9,6 @@ import FavouritesContextProvider from "../../context/favouritesContext";
 import PokemonList from "../../pages/pokemon-list/pokemonList";
 import Landing from "../../pages/landing/landing";
 
-// -------------------First release--------------------
-
 // TODO: typo - in the plural, pokemon is still pokemon :(
 
 // TODO: create collection component that manage how to display data (eg. gallery, cards or list)
