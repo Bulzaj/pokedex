@@ -9,9 +9,7 @@ import FavouritesContextProvider from "../../context/favouritesContext";
 import PokemonList from "../../pages/pokemon-list/pokemonList";
 import Landing from "../../pages/landing/landing";
 
-// TODO: collection picker sticky top
-
-// TODO: list item interactive
+// TODO: add pagination bar again
 
 // ------ Feature end ---------
 
