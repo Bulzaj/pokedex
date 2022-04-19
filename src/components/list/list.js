@@ -6,8 +6,8 @@ const List = function (props) {
   const { items, itemWrapper, itemKey } = props;
 
   return (
-    <Container>
-      <ListGroup>
+    <Container fluid>
+      <ListGroup as="ul" variant="flush">
         <ListItems items={items} itemWrapper={itemWrapper} itemKey={itemKey} />
       </ListGroup>
     </Container>
