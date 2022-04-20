@@ -48,6 +48,8 @@ import Landing from "../../pages/landing/landing";
 
 // TODO: expand landing page (use context from pokeapi)
 
+// TODO: add filtering feature (based on api lists)
+
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
   const pokemonNames = pokemons?.map((pokemon) => pokemon.name);
