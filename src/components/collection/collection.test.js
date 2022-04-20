@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import PokemonGallery from "../pokemon-gallery/pokemonGallery";
+import PokemonList from "../pokemon-list/pokemonList";
 import CollectionPicker from "./collectionPicker";
 import getCollectionTypeItem from "./getCollectionTypeItem";
 import renderCollection from "./renderCollection";
@@ -51,9 +52,5 @@ describe("Render collection function", () => {
   test('returns "Pokemon list" component', () => {
     const result = renderCollection("list");
     expect(result).toEqual(<PokemonList />);
-  });
-  test('returns "Pokemon gallery" component', () => {
-    const result = renderCollection("cards");
-    expect(result).toEqual(<PokemonCards />);
   });
 });

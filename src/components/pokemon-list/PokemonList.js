@@ -11,7 +11,7 @@ const PokemonList = function (props) {
   if (!pokemonCollection) return <CustomSpinner />;
 
   const itemWrapper = function (item) {
-    const imgSrc = item.sprites.other.dream_world.front_default;
+    const imgSrc = item.sprites?.other.dream_world.front_default;
     const title = capitalizeFirstLetter(item.name);
     const types = item.types;
     const details = [
