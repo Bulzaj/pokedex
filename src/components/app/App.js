@@ -11,6 +11,8 @@ import Landing from "../../pages/landing/landing";
 
 // TODO: add pagination bar again
 
+// TODO: add cards collection type and test it
+
 // ------ Feature end ---------
 
 // TODO: typo - in the plural, pokemon is still pokemon :(
