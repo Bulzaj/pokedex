@@ -11,9 +11,7 @@ import Landing from "../../pages/landing/landing";
 
 // TODO: add pagination bar again
 
-// TODO: add cards collection type and test it
-
-// FIXME: fix favourites page infinite loading issue
+// TODO: test pokemon card component
 
 // ------ Feature end ---------
 

@@ -14,6 +14,12 @@ describe("Image list item", () => {
     const image = screen.getByRole("img");
     expect(image).toBeInTheDocument();
   });
+
+  test("renders bottom btn if provided", () => {
+    render(<ImageListItem btnBottom={<button>test button</button>} />);
+    const el = screen.getByText("test button");
+    expect(el).toBeInTheDocument();
+  });
 });
 
 describe("Image list item details", () => {

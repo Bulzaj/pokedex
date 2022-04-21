@@ -21,7 +21,7 @@ describe("List items component", () => {
     render(
       <ListItems items={testItems} itemWrapper={() => {}} itemKey={() => {}} />
     );
-    const elemets = screen.getAllByRole("button");
+    const elemets = screen.getAllByRole("listitem");
     expect(elemets.length).toEqual(3);
   });
 });

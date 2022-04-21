@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { capitalizeFirstLetter } from "../../utils";
 import CustomSpinner from "../custom-spinner/customSpinner";
+import FavButton from "../fav-Button/favButton";
 import ImageListItem from "../image-list-item/imageListItem";
 import List from "../list/list";
 
@@ -14,6 +15,7 @@ const PokemonList = function (props) {
     const imgSrc = item.sprites?.other.dream_world.front_default;
     const title = capitalizeFirstLetter(item.name);
     const types = item.types;
+    const pokemonName = item.name;
     const details = [
       {
         key: types.length > 1 ? "Types" : "Type",
@@ -40,6 +42,7 @@ const PokemonList = function (props) {
         title={title}
         details={details}
         onListItemClick={() => navigate(`/pokemon/${item.name}`)}
+        btnBottom={<FavButton pokemonName={pokemonName} />}
       />
     );
   };

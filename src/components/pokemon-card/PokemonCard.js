@@ -10,7 +10,7 @@ const PokemonCard = function (props) {
   return (
     <Card
       className="shadow interactive"
-      onClick={() => onCardClick && onCardClick}
+      onClick={() => onCardClick && onCardClick()}
     >
       <Card.Img
         className={classes.cardImg}
@@ -49,7 +49,7 @@ const PokemonCard = function (props) {
           background: generateGradient(types),
         }}
       >
-        <FavButton />
+        <FavButton pokemonName={name} />
       </Card.Footer>
     </Card>
   );

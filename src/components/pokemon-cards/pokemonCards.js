@@ -9,8 +9,7 @@ const PokemonCards = function (props) {
   const itemKey = (item) => item.name;
 
   const itemWrapper = function (item) {
-    console.log("runs");
-    const imageSrc = item.sprites.other.dream_world.front_default;
+    const imageSrc = item.sprites?.other.dream_world.front_default;
 
     return (
       <PokemonCard
