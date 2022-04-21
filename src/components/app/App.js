@@ -13,6 +13,8 @@ import Landing from "../../pages/landing/landing";
 
 // TODO: add cards collection type and test it
 
+// FIXME: fix favourites page infinite loading issue
+
 // ------ Feature end ---------
 
 // TODO: typo - in the plural, pokemon is still pokemon :(
@@ -49,6 +51,8 @@ import Landing from "../../pages/landing/landing";
 // TODO: expand landing page (use context from pokeapi)
 
 // TODO: add filtering feature (based on api lists)
+
+// TODO: create full vh main section
 
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();

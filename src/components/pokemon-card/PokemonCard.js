@@ -1,32 +1,25 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { capitalizeFirstLetter, generateGradient } from "../../utils";
-import { useNavigate } from "react-router-dom";
-import "./pokemonCard.css";
+import FavButton from "../fav-Button/favButton";
+import classes from "./pokemonCard.module.css";
 
 const PokemonCard = function (props) {
-  const { pokemon } = props;
-  const image = pokemon.sprites.other.dream_world.front_default;
-  const types = pokemon.types;
-  const navigate = useNavigate();
-
-  const handleClick = function (e) {
-    e.preventDefault();
-    navigate(`/pokemon/${pokemon.name}`);
-  };
+  const { onCardClick, imgSrc, name, types, baseExperience, height, weight } =
+    props;
 
   return (
-    <Card className="shadow interactive" onClick={handleClick}>
+    <Card
+      className="shadow interactive"
+      onClick={() => onCardClick && onCardClick}
+    >
       <Card.Img
+        className={classes.cardImg}
         variant="top"
-        src={image}
+        src={imgSrc}
         alt="pokomon-img"
-        // style={{
-        //   height: "60%",
-        //   objectFit: "fill",
-        // }}
       />
       <Card.Body>
-        <Card.Title>{capitalizeFirstLetter(pokemon.name)}</Card.Title>
+        <Card.Title>{capitalizeFirstLetter(name)}</Card.Title>
         <Card.Text>
           <strong className="text-muted">
             {types.length > 1 ? "Types: " : "Type: "}
@@ -35,19 +28,19 @@ const PokemonCard = function (props) {
         </Card.Text>
         <Card.Text>
           <strong className="text-muted">Base experience: </strong>
-          {pokemon.base_experience}
+          {baseExperience}
         </Card.Text>
         <span className="d-flex justify-content-between">
           <Card.Text>
             <strong className="text-muted">Height: </strong>
-            {`${pokemon.height * 10} cm`}
+            {`${height * 10} cm`}
           </Card.Text>
           <Card.Text>
             <strong className="text-muted">/</strong>
           </Card.Text>
           <Card.Text>
             <strong className="text-muted">Weight: </strong>
-            {`${pokemon.weight / 10} kg`}
+            {`${weight / 10} kg`}
           </Card.Text>
         </span>
       </Card.Body>
@@ -56,7 +49,7 @@ const PokemonCard = function (props) {
           background: generateGradient(types),
         }}
       >
-        <Button>Add to favourites</Button>
+        <FavButton />
       </Card.Footer>
     </Card>
   );
