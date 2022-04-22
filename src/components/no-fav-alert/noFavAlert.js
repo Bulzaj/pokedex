@@ -8,7 +8,7 @@ const NoFavAlert = function () {
         favourite. Click the below button to navigate to the Pokemon list.
       </p>
       <hr />
-      <Button href="/" variant="primary">
+      <Button href="/pokemon-list" variant="primary">
         Pokemon list
       </Button>
     </Alert>

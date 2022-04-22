@@ -30,7 +30,7 @@ const PaginationBar = function (props) {
   };
 
   return (
-    <Container className="d-flex justify-content-center mt-2">
+    <Container className="d-flex justify-content-center mt-3 mb-2">
       <Pagination>
         <Pagination.Prev
           onClick={handleOnLeftClick}

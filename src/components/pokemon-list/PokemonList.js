@@ -1,33 +1,61 @@
-import { useEffect, useMemo } from "react";
-import { Row, Col } from "react-bootstrap";
-import PokemonCard from "../pokemon-card/PokemonCard";
-import usePokemons from "../../hooks/usePokemons";
+import { useNavigate } from "react-router-dom";
+import { capitalizeFirstLetter } from "../../utils";
+import CustomSpinner from "../custom-spinner/customSpinner";
+import FavButton from "../fav-Button/favButton";
+import ImageListItem from "../image-list-item/imageListItem";
+import List from "../list/list";
 
 const PokemonList = function (props) {
-  const pokemonNames = useMemo(
-    () => props.pokemons.map((pokemon) => pokemon.name),
-    [props.pokemons]
-  );
-  const { pokemons, fetchPokemons } = usePokemons();
+  const { pokemonCollection } = props;
+  const navigate = useNavigate();
 
-  useEffect(
-    () => pokemonNames && fetchPokemons(pokemonNames),
-    [fetchPokemons, pokemonNames]
-  );
+  if (!pokemonCollection) return <CustomSpinner />;
 
-  if (pokemons) {
+  const itemWrapper = function (item) {
+    const imgSrc = item.sprites?.other.dream_world.front_default;
+    const title = capitalizeFirstLetter(item.name);
+    const types = item.types;
+    const pokemonName = item.name;
+    const details = [
+      {
+        key: types.length > 1 ? "Types" : "Type",
+        value: types.map((type) => capitalizeFirstLetter(type.type.name + " ")),
+      },
+      {
+        key: "Base exp",
+        value: item.base_experience,
+      },
+      {
+        key: "Height",
+        value: item.height * 10 + " cm",
+      },
+      {
+        key: "Weight",
+        value: item.weight / 10 + " kg",
+      },
+    ];
+
     return (
-      <Row className="d-flex justify-content-center g-3">
-        {pokemons.map((pokemon) => (
-          <Col md lg="auto" key={pokemon.name}>
-            <PokemonCard pokemon={pokemon} />
-          </Col>
-        ))}
-      </Row>
+      <ImageListItem
+        href={`/pokemon/${item.name}`}
+        imgSrc={imgSrc}
+        title={title}
+        details={details}
+        onListItemClick={() => navigate(`/pokemon/${item.name}`)}
+        btnBottom={<FavButton pokemonName={pokemonName} />}
+      />
     );
-  }
+  };
 
-  return <></>;
+  const itemKey = (item) => item.name;
+
+  return (
+    <List
+      items={pokemonCollection}
+      itemKey={itemKey}
+      itemWrapper={itemWrapper}
+    />
+  );
 };
 
 export default PokemonList;
