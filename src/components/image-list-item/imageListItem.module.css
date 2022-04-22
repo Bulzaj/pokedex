@@ -1,0 +1,46 @@
+.itemImage {
+    height: 7rem;
+    width: 7rem;
+}
+
+.itemImageWrapper {
+    width: 7rem;
+    height: 7rem;
+}
+
+.details {
+    display: none;
+}
+
+.detailsCol {
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+    .details {
+        display: flex;
+    }
+    
+    .itemImage {
+        height: 8rem;
+        width: 8rem;
+    }
+
+    .itemImageWrapper {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .itemImage {
+        height: 11rem;
+        width: 11rem;
+    }
+    
+    .itemImageWrapper {
+        width: 11rem;
+        height: 11rem;
+    }
+}

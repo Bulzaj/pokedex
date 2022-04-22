@@ -21,7 +21,7 @@ const ClearButton = function () {
   };
 
   return (
-    <div className="d-flex justify-content-center mt-4">
+    <div className="d-flex justify-content-center mt-4 mb-4">
       <Button variant="outline-danger" className="w-50" onClick={handleOnClick}>
         Clear
       </Button>

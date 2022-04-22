@@ -9,8 +9,6 @@ import FavouritesContextProvider from "../../context/favouritesContext";
 import PokemonList from "../../pages/pokemon-list/pokemonList";
 import Landing from "../../pages/landing/landing";
 
-// -------------------First release--------------------
-
 // TODO: typo - in the plural, pokemon is still pokemon :(
 
 // TODO: create collection component that manage how to display data (eg. gallery, cards or list)
@@ -43,6 +41,10 @@ import Landing from "../../pages/landing/landing";
 // TODO: create photo gallery with starsalts images
 
 // TODO: expand landing page (use context from pokeapi)
+
+// TODO: add filtering feature (based on api lists)
+
+// TODO: create full vh main section
 
 function App() {
   const { pokemons, fetchPokemons } = usePokemons();
