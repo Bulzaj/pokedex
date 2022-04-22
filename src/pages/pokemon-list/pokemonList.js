@@ -24,23 +24,19 @@ const PokemonList = function () {
     scrollTop();
   };
 
-  // return (
-  //   <>
-  //     <PokemonGallery pokemonList={pokemons} />
-  //     {pokemons.length !== 0 ? (
-  //       <PaginationBar
-  //         onPageChange={onPageChange}
-  //         lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
-  //       />
-  //     ) : null}
-  //   </>
-  // );
-
   return (
-    <Container>
-      <h3 className="display-3">Pokemon list</h3>
-      <Collection pokemonList={pokemons} />
-    </Container>
+    <>
+      <Container>
+        <h3 className="display-3">Pokemon list</h3>
+        <Collection pokemonList={pokemons} />
+      </Container>
+      {pokemons.length !== 0 ? (
+        <PaginationBar
+          onPageChange={onPageChange}
+          lastPage={Math.ceil(TOTAL_RECORDS / PER_PAGE_LIMIT)}
+        />
+      ) : null}
+    </>
   );
 };
 
