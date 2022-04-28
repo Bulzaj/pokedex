@@ -27,6 +27,8 @@ My goals to achieve in the near future:
 ## Technology stack
 * React.js
 * React context api
+* React testing library
+* React router dom
 * Bootstrap
 * axios
 
